@@ -19,13 +19,31 @@ x = mydb.list_collection_names()
 @app.route('/')
 # def hello():
 #     return 'Hello World ...again'
-def home_page():
+def index():
     # pprint.pprint(mycol.find_one({"title": "Spicy Thai Sweet Potato Soup"}))
     return render_template("index.html")
 
+
+@app.route('/breakfast')
+def breakfast():
+    return render_template('breakfast.html')
+
 @app.route('/dinner')
-# def hello():
-#     return 'Hello World ...again'
+def dinner():
+    return render_template('dinner.html')
+
+@app.route('/dessert')
+def dessert():
+    return render_template('dessert.html')
+
+@app.route('/drinks')
+def drinks():
+    return render_template('drinks.html')
+
+@app.route('/vegan')
+def vegan():
+    return render_template('vegan.html')    
+
 def home_page1():
      pprint.pprint(mycol.find_one({"category": "dinner"}))
      return mycol.find_one()
@@ -33,6 +51,8 @@ def home_page1():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
