@@ -4,14 +4,35 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 
 app = Flask(__name__)
-app.config["MONGO_DBNAME"] = 'fitness_pot'
-app.config["MONGO_URI"] = 'mongodb+srv://tomciosegal:cucharec7164@myfirstcluster-nbawd.mongodb.net/fitness_pot?retryWrites=true&w=majority'
+# app.config["MONGO_DBNAME"] = 'fitness_pot'
+# app.config["MONGO_URI"] = 'mongodb+srv://tomciosegal:cucharec7164@myfirstcluster-nbawd.mongodb.net/fitness_pot?retryWrites=true&w=majority'
 
-mongo = PyMongo(app)
+# mongo = PyMongo(app)
+import pymongo
+import pprint
+
+myclient = pymongo.MongoClient("mongodb+srv://tomciosegal:cucharec7164@myfirstcluster-nbawd.mongodb.net")
+mydb = myclient["fitness_pot"]
+mycol = mydb["dish"]
+
+x = mydb.list_collection_names()
 @app.route('/')
-def hello():
-    return 'Hello World ...again'
+# def hello():
+#     return 'Hello World ...again'
+def home_page():
+    # pprint.pprint(mycol.find_one({"title": "Spicy Thai Sweet Potato Soup"}))
+    return render_template("index.html")
 
+@app.route('/dinner')
+# def hello():
+#     return 'Hello World ...again'
+def home_page1():
+     pprint.pprint(mycol.find_one({"category": "dinner"}))
+     return mycol.find_one()
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
