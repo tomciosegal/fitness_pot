@@ -7,7 +7,7 @@ app = Flask(__name__)
 # app.config["MONGO_DBNAME"] = 'fitness_pot'
 # app.config["MONGO_URI"] = 'mongodb+srv://tomciosegal:cucharec7164@myfirstcluster-nbawd.mongodb.net/fitness_pot?retryWrites=true&w=majority'
 
-# mongo = PyMongo(app)
+mongo = PyMongo(app)
 import pymongo
 import pprint
 
