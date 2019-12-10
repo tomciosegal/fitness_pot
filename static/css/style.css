@@ -1,0 +1,23 @@
+
+/* email form and hovering send button */
+.email-form {
+    font-family: "Courgette", sans-serif;
+    font-size: 14px;
+    padding: 15px;
+    background-color: #edf7ef;
+    border-radius: 15px;
+
+}
+
+.send-btn {
+    background-color: #16630b;
+    border-color: #1a1a1a;
+    color: #fff;
+}
+
+.send-btn:hover {
+    text-decoration: none;
+    background-color: #76c180!important;
+    border-color: #76c180!important;
+    color: #fff;
+}
