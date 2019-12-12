@@ -1,4 +1,15 @@
 
+/*header edited from bootstrap to my needs */
+header.masthead{
+height: 550px;
+}
+
+header.masthead .intro-text {
+    padding-top:150px; 
+    
+}
+
+
 /* email form and hovering send button */
 .email-form {
     font-family: "Courgette", sans-serif;
