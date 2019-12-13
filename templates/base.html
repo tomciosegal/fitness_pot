@@ -6,6 +6,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">  
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/agency.min.css')}}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css' )}}" type="text/css" />
@@ -26,22 +30,13 @@
             <a class="nav-link js-scroll-trigger" href="{{ url_for('index') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url_for('myrecipies') }}">My Recipies</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url_for('addrecipie') }}">Add Recipie</a>
+          </li>
+            <li class="nav-item">
+            <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Login</button>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url_for('breakfast') }}">Breakfast</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url_for('dinner') }}">Dinner</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url_for('dessert') }}">Dessert</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url_for('drinks') }}">Drinks</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url_for('vegan') }}">Vegan</a>
+            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
           </li>
         </ul>
       </div>
@@ -314,7 +309,53 @@
     </div>
   </div>
 
+
+<!-- Modal for sign up -->
+  <div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="{{ url_for('createuser') }}" method="POST">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>      
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+      <label for="email"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="id02" class="modal">
+  
+  <form class="modal-content animate" action="{{ url_for('login') }}" method="POST">
+      <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+        
+      <button type="submit">Login</button>
+      
+    </div>
+
+      </form>
+</div>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <!-- Bootstrap core JavaScript -->
+  
+  
   <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -327,5 +368,26 @@
 
   <!-- Custom scripts for this template -->
   <script src="{{ url_for('static', filename='js/agency.min.js') }}"></script>
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+// Login modal
+var login_modal = document.getElementById('id02');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == login_modal) {
+        login_modal.style.display = "none";
+    }
+}
+</script>
 
 </body>
