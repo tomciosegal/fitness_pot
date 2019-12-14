@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>All Recipie</h1>
+
+{% for recipie in recipies %}<br>
+
+{{ recipie.title }}<br>
+<img class="img-fluid" src="/static/img/some_recipies/{{recipie.image}}" alt="{{recipie.title}}"><br>
+    
+    {{ recipie.author }}<br>
+    {{ recipie.calories }}<br>
+    {{ recipie.instructions }}<br>
+    {{ recipie.nutrition }}<br>
+    {{ recipie.category }}<br>
+    {{ recipie.serves }}<br>
+    {{ recipie.ingredients }}<br>
+    {{ recipie.cooking_time }}<br>
+{% endfor %}
+    
+
+    {% endblock %}

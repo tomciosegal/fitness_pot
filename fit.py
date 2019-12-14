@@ -2,12 +2,19 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
+from flask_login import LoginManager
+from flask_login import current_user, login_user
+from dotenv import load_dotenv
 
+load_dotenv()
+print(os.environ)
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'fitness_pot'
 app.config["MONGO_URI"] = 'mongodb+srv://tomciosegal:cucharec7164@myfirstcluster-nbawd.mongodb.net/fitness_pot?retryWrites=true&w=majority'
-
+login = LoginManager(app)
 mongo = PyMongo(app)
+
+
 import pymongo
 import pprint
 
@@ -16,6 +23,8 @@ mydb = myclient["fitness_pot"]
 mycol = mydb["dish"]
 userscol = mydb["users"]
 x = mydb.list_collection_names()
+
+
 @app.route('/')
 # def hello():
 #     return 'Hello World ...again'
@@ -42,7 +51,15 @@ def drinks():
 
 @app.route('/vegan')
 def vegan():
-    return render_template('vegan.html')    
+    return render_template('vegan.html')
+
+@app.route('/allrecipies')
+def allrecipies():
+    recipies = mydb.dish.find()
+        
+    return render_template('allrecipies.html', recipies=recipies)
+
+        
 
 def home_page1():
      pprint.pprint(mycol.find_one({"category": "dinner"}))
@@ -51,6 +68,11 @@ def home_page1():
 @app.route('/addrecipie')
 def addrecipie():
     return render_template('addrecipie.html')
+
+@app.route('/myrecipies')
+def myrecipies():
+    mydb.dish.find({"user_id": user_id})
+    return render_template('myrecipies.html')
 
 @app.route('/create_user', methods = ['POST'])
 def createuser():
@@ -68,9 +90,11 @@ def login():
     password = request.form.get('password')
     userfromdb = userscol.find_one({ "username": username })
     if (userfromdb != None and userfromdb['password'] == password):
-        return 'SUCCESS'
+        # login_user(userfromdb)
+        return redirect(url_for('index'))
     else:
-        return 'FAILED'
+        return redirect(url_for('index'))
+
    
 
 @app.route('/createrecepie', methods = ['POST'])
