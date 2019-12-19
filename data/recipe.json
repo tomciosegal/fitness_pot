@@ -1,0 +1,13 @@
+[
+    {
+        "title": "Poached Egg Sweet Potato",
+        "category":"breakfast",
+        "image":"{{ url_for('static',filename='img/some_recipies/poached_egg_sweet_potato.jpg')}}",
+        "cooking_time":"15 min",
+        "serves":"4",
+        "calories":"316",
+        "author":,
+        "ingredients":" 1 Large Sweet Potato, 2 Eggs Poached,2 Cups Spinach, 1 Tbsp Olive Oil, Salt and seasonings to taste",
+        "instructions":,
+    }
+]

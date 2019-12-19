@@ -1,5 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<!-- Search Box Dropdown-->
+    <!-- The keyword search searches by keyword, dinner vegan breakfast drinks dessert. -->
+
+    <div class="col-3">
+        <div class="search-box">
+            <a class="btn btn-secondary dropdown-toggle search-btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Search By Keyword
+  </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                {% for word in search_words %}
+                <a class="dropdown-item" href="{{ url_for('search_recipes', page_nr='1', sel_keyword=word.key_words.lower()) }}">{{ word.key_words }}</a> {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
 <section class="bg-light page-section" id="portfolio">
           <div class="row">
         <div class="col-lg-12 text-center">

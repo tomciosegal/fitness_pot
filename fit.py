@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
+import json
 from flask_login import LoginManager
 from flask_login import current_user, login_user
 from dotenv import load_dotenv
@@ -56,7 +57,6 @@ def vegan():
 @app.route('/allrecipies')
 def allrecipies():
     recipies = mydb.dish.find()
-        
     return render_template('allrecipies.html', recipies=recipies)
 
         
@@ -73,6 +73,14 @@ def addrecipie():
 def myrecipies():
     mydb.dish.find({"user_id": user_id})
     return render_template('myrecipies.html')
+
+@app.route('/recipe_details')
+def recipe_details():
+    data = []
+    with open("data/recipe.json", "r") as json_data:
+        data = json.load(json_data)
+    # recipies = mydb.dish.find_one()
+    return render_template('recipe_details.html', recipe_details=data)
 
 @app.route('/create_user', methods = ['POST'])
 def createuser():

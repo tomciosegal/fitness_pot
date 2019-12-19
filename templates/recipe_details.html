@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for recipie in recipies %}<br>
+
+{{ recipie.title }}<br>
+
+<img class="img-fluid" src="/static/img/some_recipies/{{recipie.image}}" alt="{{recipie.title}}"><br>
+    
+    {{ recipie.author }}<br><br>
+    {{ recipie.calories }}<br><br>
+    {{ recipie.ingredients }}<br><br>
+    {{ recipie.instructions }}<br><br>
+    {{ recipie.nutrition }}<br><br>
+    {{ recipie.category }}<br><br>
+    {{ recipie.serves }}<br><br>
+    {{ recipie.cooking_time }}<br><br>
+{% endfor %}
+<div class="row no-gutters card-group card-details-padding">
+
+    <div class="col-12 card card-border">
+
+        <!-- Card Header -->
+
+        <div class="row no-gutters card-header font-italic">
+            <div class="col-6 ">
+                <span><strong>For: {{ dish.origin.title() }}</strong></span>
+            </div>
+            <div class="col-6">
+                <span><strong>{{ dish.title.capitalize()}} Recipe</strong></span>
+            </div>
+
+
+        </div>
+
+
+        <div class="row no-gutters p-1 card-body">
+            <div class="col-6">
+                
+                <div class="container m-0 p-0 recipe-border" style="background-image:url({{ url_for('static', filename='images/'+dish.image)}}); width: 100%; height: 350px; alt=recipe.alt_txt; background-size: cover; background-position: center">
+                </div>
+            </div>
+
+            <div class="col-6 p-3">
+                <div class="row no-gutters">
+                    <div class="col-12">
+                        <h5 class="rec-intro-title">{{dish.title.title()}}</h5>
+                        
+                    </div>
+                </div>
+                <div class="row no-gutters mt-5">
+                    <div class="col-12">
+                        <hr class="mb-5">
+                        <p>Time: {{ dish.cooking_time }}</p>
+                        <p>Serves: {{ dish.serves }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card-footer">
+            
+
+            <div class="row no-gutters">
+                <div class="col-6  recipe-border">
+                    <h5 class="p-2 text-center"><strong>Ingredients</strong></h5>
+                   <textarea class="textbox"  cols="50" wrap="hard" rows="20" name="ingredients" id="ingredients" class="form-control" disabled>{% for ingredient in dish.ingredients%}{{ ingredient }}{% endfor %}</textarea>
+                </div>
+                
+                <div class="col-6 recipe-border">
+                    <h5 class="p-2 text-center"><strong>Instructions</strong></h5>
+                    <textarea class="textbox" cols="50" wrap="hard" rows="20" name="method" id="method" class="form-control" disabled>{% for instructions in recipe.method %}{{ instructions }}{% endfor %}</textarea>
+
+                </div>
+            </div>
+
+
+
+
+
+{% endblock %}

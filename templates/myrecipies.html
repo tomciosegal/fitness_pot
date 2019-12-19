@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>My Recipies</h1>
-
+<div class="row m-0 p-2 mt-3 mb-2 feature-style">
+    <div class="col-12">
+        
+        {% if rec_search_flag == "E" %}
+        <!-- Searching My Recipes -->
+        <h2 class="m-0"><span id="category">My Recipe Details</h2>
+        
+        {% else %}
+        <h2 class="m-0"><span id="category">Recipe Details</h2>
+        {% endif %}
+        <span id="origin" class="d-none">{{rec_det_origin}}</span>
+    </div>
+</div>
 {% endblock %}

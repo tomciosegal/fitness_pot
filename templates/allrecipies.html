@@ -5,16 +5,20 @@
 {% for recipie in recipies %}<br>
 
 {{ recipie.title }}<br>
+<div class="row no-gutters p-1 card-body ">
+            <div class="col-6 ">
 <img class="img-fluid" src="/static/img/some_recipies/{{recipie.image}}" alt="{{recipie.title}}"><br>
-    
-    {{ recipie.author }}<br>
-    {{ recipie.calories }}<br>
-    {{ recipie.instructions }}<br>
-    {{ recipie.nutrition }}<br>
-    {{ recipie.category }}<br>
-    {{ recipie.serves }}<br>
-    {{ recipie.ingredients }}<br>
-    {{ recipie.cooking_time }}<br>
+            </div>
+            
+</div>
+    {{ recipie.author }}<br><br>
+    {{ recipie.calories }}<br><br>
+    {{ recipie.ingredients }}<br><br>
+    {{ recipie.instructions }}<br><br>
+    {{ recipie.nutrition }}<br><br>
+    {{ recipie.category }}<br><br>
+    {{ recipie.serves }}<br><br>
+    {{ recipie.cooking_time }}<br><br>
 {% endfor %}
     
 

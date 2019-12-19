@@ -1,7 +1,2 @@
-# Code Institute
-
-Welcome Tomasz Cygal,
-
-We have preinstalled all of the tools you need to get started.
-
-Happy coding!
+# FITNESS POT
+![alt text](/static/images/some_recipies/dumbell.jpg "Fitness Pot")
