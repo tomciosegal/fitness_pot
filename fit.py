@@ -27,11 +27,9 @@ x = mydb.list_collection_names()
 
 
 @app.route('/')
-# def hello():
-#     return 'Hello World ...again'
 def index():
-    # pprint.pprint(mycol.find_one({"title": "Spicy Thai Sweet Potato Soup"}))
-    return render_template("index.html")
+    recipes = mydb.dish.find()
+    return render_template("index.html",recipes=recipes)
 
 
 @app.route('/breakfast')
@@ -54,10 +52,10 @@ def drinks():
 def vegan():
     return render_template('vegan.html')
 
-@app.route('/allrecipies')
-def allrecipies():
-    recipies = mydb.dish.find()
-    return render_template('allrecipies.html', recipies=recipies)
+# @app.route('/allrecipies')
+# def allrecipies():
+#     recipies = mydb.dish.find()
+#     return render_template('allrecipies.html', recipies=recipies)
 
         
 
@@ -74,13 +72,8 @@ def myrecipies():
     mydb.dish.find({"user_id": user_id})
     return render_template('myrecipies.html')
 
-@app.route('/recipe_details')
-def recipe_details():
-    data = []
-    with open("data/recipe.json", "r") as json_data:
-        data = json.load(json_data)
-    # recipies = mydb.dish.find_one()
-    return render_template('recipe_details.html', recipe_details=data)
+    
+
 
 @app.route('/create_user', methods = ['POST'])
 def createuser():
