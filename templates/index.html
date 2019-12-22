@@ -34,16 +34,25 @@
 							</div>
 						</div>
 						<div class="card-footer d-flex justify-content-center">
-							<button type="button" class="btn btn-outline-dark"
-								onclick="window.location.href='{{ url_for( 'index' , recipe=recipe._id,action='index' ) }}';">View
-								Recipe</button>
+                         <a class="nav-link js-scroll-trigger" href="{{ url_for('recipe_details' , recipe=recipe._id,action='index') }}">Show Recipie</a> -->
+							 <button type="button" class="btn btn-outline-dark"
+								onclick="window.location.href='{{ url_for( 'recipe_details' , recipe=recipe._id,action='index' ) }}';">View
+								Recipe</button> 
+                                
+                                
 						</div>
 					</div>
+                    
 				</div>
+                
 				{% endfor %}
 			</div>
 		</div>
 	</div>
+    <a href="{{ url_for( 'index' , page=page-1 ) }}" class="previous">&laquo; Previous</a>
+    {% if next %}
+    <a href="{{ url_for( 'index' , page=page+1 ) }}" class="next">Next &raquo;</a>
+    {% endif %}
 </main>
 {% endblock %}
 

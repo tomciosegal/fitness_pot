@@ -28,8 +28,24 @@ x = mydb.list_collection_names()
 
 @app.route('/')
 def index():
+    pagination = 6
+    next = True
     recipes = mydb.dish.find()
-    return render_template("index.html",recipes=recipes)
+    try:
+        page=int(request.args.get("page",1))
+    except ValueError:
+        page = 1
+    if page < 1:
+        page = 1
+    start = int(pagination * (page -1))
+    stop = int(pagination * page)
+    recipes = [x for x in recipes]
+    if stop > len(recipes):
+        next = False
+    recipes = recipes[start:stop] 
+    return render_template("index.html",page=page,recipes=recipes, next=next)
+
+
 
 
 @app.route('/breakfast')
@@ -72,8 +88,20 @@ def myrecipies():
     mydb.dish.find({"user_id": user_id})
     return render_template('myrecipies.html')
 
-    
+@app.route('/recipe_details')
+def recipe_details():
+    action = request.args.get('action')
+    recipe = request.args.get('recipe')
 
+    the_recipe = mongo.db.dish.find_one({"_id": ObjectId(recipe)})
+    
+    if action == 'index':
+        return render_template("recipe_details.html", recipe=the_recipe)
+    elif action == 'edit':
+        return render_template("edit_recipe.html", recipe=the_recipe)
+    elif action == 'delete':
+        mongo.db.recipes.delete_one({"_id": ObjectId(recipe)})
+        return render_template("recipes.html", recipes=mongo.db.recipes.find())
 
 @app.route('/create_user', methods = ['POST'])
 def createuser():

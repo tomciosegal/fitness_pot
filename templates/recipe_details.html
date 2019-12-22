@@ -4,15 +4,15 @@
 	<div class="row col-md-12 mb-5">
 		<div class="card recipe-card">
 			<div class="row">
-				<div class="col-md-6 bg-img">
+				<div class="col-md-6 bg-img"></div>
 					{% if recipe.image %}
-					<img src="/static/img/{{recipe.image}}" class="col-sm-4 col-md-8 recipe-img" />
+					<img src="/static/img/some_recipies/{{recipe.image}}" class="col-sm-4 col-md-8 recipe-img" />
                     {% else %}
-					<img src="/static/img/def-image.jpg" class="col-sm-4 col-md-8 recipe-img"/>
+					<img src="/static/img/some_recipies/dumbell.jpg" class="col-sm-4 col-md-8 recipe-img"/>
                     {% endif %}
                  </div>
 					<div class="col-md-6 text-center" style="margin-top: 100px;">
-						<p class="card-text"><strong>Category:</strong> {{recipe.category_name}}</p>
+						<p class="card-text"><strong>Category:</strong> {{recipe.category}}</p>
 						<p class="card-text"><strong>Cooking Time:</strong> {{recipe.cooking_time}} min</p>
 						<p class="card-text"><strong>Serves:</strong> {{recipe.serves}}</p>
 						<p class="card-text"><strong>Author:</strong> {{recipe.author}}</p>
@@ -28,10 +28,10 @@
 				<div class="card-footer">
 					<a style="cursor:pointer; float: left;padding: 5px; width: 110px; height: 36px"
 						class="btn btn-success"
-						onclick="window.location.href='{{ url_for( 'detail' , recipe=recipe._id,action='edit'  ) }}';">Edit</a>
+						onclick="window.location.href='{{ url_for( 'recipe_details' , recipe=recipe._id,action='edit'  ) }}';">Edit</a>
 					<a style="cursor:pointer; float: right;padding: 5px;  width: 110px; height: 36px"
 						class="btn btn-danger delete" title="delete"
-						onclick="return confirm('Are you sure you want to delete this item'), window.location.href='{{ url_for( 'detail' , recipe=recipe._id,action='delete'  ) }}';">Delete</a>
+						onclick="return confirm('Are you sure you want to delete this item'), window.location.href='{{ url_for( 'recipe_details' , recipe=recipe._id,action='delete'  ) }}';">Delete</a>
 				</div>
 			</div>
 		</div>
