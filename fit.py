@@ -26,6 +26,8 @@ userscol = mydb["users"]
 x = mydb.list_collection_names()
 
 
+DEBUG_LEVEL = "DEBUG"
+
 @app.route('/')
 def index():
     pagination = 6
@@ -79,9 +81,9 @@ def home_page1():
      pprint.pprint(mycol.find_one({"category": "dinner"}))
      return mycol.find_one()
 
-@app.route('/addrecipie')
-def addrecipie():
-    return render_template('addrecipie.html')
+@app.route('/addrecipe')
+def addrecipe():
+    return render_template('addrecipe.html')
 
 @app.route('/myrecipies')
 def myrecipies():
@@ -100,7 +102,8 @@ def recipe_details():
     elif action == 'edit':
         return render_template("edit_recipe.html", recipe=the_recipe)
     elif action == 'delete':
-        mongo.db.recipes.delete_one({"_id": ObjectId(recipe)})
+        #mongo.db.recipes.delete_one({"_id": ObjectId(recipe)})
+        mycol.delete_one({"_id": ObjectId(recipe)})
         return render_template("recipes.html", recipes=mongo.db.recipes.find())
 
 @app.route('/create_user', methods = ['POST'])
@@ -126,22 +129,50 @@ def login():
 
    
 
-@app.route('/createrecepie', methods = ['POST'])
+# @app.route('/createrecepie', methods = ['POST'])
+# def createrecepie():
+#     print (request.form.get('user_name'))
+#     newrecipe = {"title" :"test recepie", 
+#               "category" : "vegan",
+#               "image" : "test_image.jpeg",
+#               "cooking_time" : "40",
+#               "serves" : "2",
+#               "calories" : "100",
+#               "author" : "John",
+#               "ingredients" : "a,b,c",
+#               "instructions" : "dsfdgfdsf",
+#               "nutrition" : "fbfgdsdf"
+#         }
+#     mycol.insert_one(newrecipe)
+#     return 'TEST'
+
+@app.route('/createrecepie', methods=['POST'])
 def createrecepie():
-    print (request.form.get('user_name'))
-    newrecipe = {"title" :"test recepie", 
-              "category" : "vegan",
-              "image" : "test_image.jpeg",
-              "cooking_time" : "40",
-              "serves" : "2",
-              "calories" : "100",
-              "author" : "John",
-              "ingredients" : "a,b,c",
-              "instructions" : "dsfdgfdsf",
-              "nutrition" : "fbfgdsdf"
-        }
+    print("aaaaaaaaa")
+    print(request.form)
+
+    recipes = mongo.db.dish
+    (request.form.to_dict())
+    
+    newrecipe = {
+        "name": request.form.get('name'),
+        "user_name": request.form.get('user_name'),
+        "title": request.form.get('title'),
+        "serves": request.form.get('serves'),
+        "mail": request.form.get('mail'),
+        "image_url": request.form.get('image_url'),
+        "ingredients": request.form.get('ingredients'),
+        "instructions": request.form.get('instructions')
+
+    }
+    if (DEBUG_LEVEL == "DEBUG"):
+        print("newrecipe = ", newrecipe)
+
+    #recipes.insert_one(newrecipe)
     mycol.insert_one(newrecipe)
-    return 'TEST'
+
+    
+    return redirect(url_for('index'))
 
 
 
