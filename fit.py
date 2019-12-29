@@ -20,7 +20,7 @@ mongo = PyMongo(app)
 import pymongo
 import pprint
 
-myclient = pymongo.MongoClient("mongodb+srv://tomciosegal:cucharec7164@myfirstcluster-nbawd.mongodb.net")
+myclient = pymongo.MongoClient(os.environ.get("MONGO_CLUSTER"))
 mydb = myclient["fitness_pot"]
 mycol = mydb["dish"]
 userscol = mydb["users"]
@@ -115,7 +115,7 @@ def home_page1():
 
 @app.route('/addrecipe')
 def addrecipe():
-    return render_template('addrecipe.html')
+    return render_template('addrecipe.html', recipe=None, text="Add Recipe", button_text="Add new recipe")
 
 @app.route('/myrecipies')
 def myrecipies():
@@ -132,7 +132,9 @@ def recipe_details():
     if action == 'index':
         return render_template("recipe_details.html", recipe=the_recipe)
     elif action == 'edit':
-        return render_template("edit_recipe.html", recipe=the_recipe)
+        print("the_recipe", the_recipe)
+        the_recipe["parsed_ingredients"] = parse_array(the_recipe.get("ingredients"))
+        return render_template("addrecipe.html", recipe=the_recipe, text="Edit Recipe", button_text="Update recipe")
     elif action == 'delete':
         #mongo.db.recipes.delete_one({"_id": ObjectId(recipe)})
         mycol.delete_one({"_id": ObjectId(recipe)})
@@ -176,6 +178,12 @@ def createrecepie():
     
     return redirect(url_for('index'))
 
+def parse_array(input_array):
+    out = ""
+    for v in input_array:
+        out = out + v + "\n"
+    
+    return out
 
 
 if __name__ == '__main__':

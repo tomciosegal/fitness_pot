@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <h1>Add Recipie</h1>
+
+
+
+    <h1>{{text}}</h1>
+    
 
     <div class=class="row m-0 p-2 mt-3 mb-4">
     <div class="offset-2 col-8 email-form">
@@ -15,7 +19,7 @@
 
                 <div class="row no-gutters">
                     <div class="offset-1 col-7 ">
-                        <input id="my_email" name="my_email" type="email" class="form-control text-center" placeholder="To See Your Recipes Enter Your Email Address" required>
+                        <input id="my_email" name="my_email" type="email" value="{{recipe.user_email}}" class="form-control text-center" placeholder="To See Your Recipes Enter Your Email Address" required>
                     </div>
 
                     <div class="col-3 ml-5">
@@ -32,11 +36,11 @@
     <form class="col s12" action="{{ url_for('createrecepie') }}" method="POST">
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Placeholder" id="name" name="name" type="text" class="validate">
+          <input placeholder="Placeholder" id="name" value="{{recipe.title}}"name="name" type="text" class="validate">
           <label for="name">Name</label>
         </div>
         <div class="input-field col s6">
-          <input name="user_name" id="user_name" type="text" class="validate">
+          <input name="user_name" id="user_name" value="{{recipe.username}}"type="text" class="validate">
           <label for="user_name">Username</label>
         </div>
       </div>
@@ -84,19 +88,19 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <textarea name ="ingredients"id="ingredients" class="materialize-textarea" data-length="500"></textarea>
+            <textarea name ="ingredients"id="ingredients" class="materialize-textarea" data-length="500">{{recipe.parsed_ingredients}}</textarea>
             <label for="ingredients">Ingredients (one per line)</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <textarea name ="instructions" id="instructions" class="materialize-textarea" data-length="500"></textarea>
+            <textarea name ="instructions" id="instructions" class="materialize-textarea" data-length="500">{{recipe.instructions}}</textarea>
             <label for="instructions">Instructions (one per line)</label>
           </div>
         </div>
 
-        <button class="btn waves-effect waves-light" type="submit" name="action">Add Recipie
+        <button class="btn waves-effect waves-light" type="submit" name="action">{{button_text}}
     <i class="material-icons right">send</i>
     </form>
   </div>
