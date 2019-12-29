@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, request
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 import json
@@ -11,7 +11,8 @@ load_dotenv()
 print(os.environ)
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'fitness_pot'
-app.config["MONGO_URI"] = 'mongodb+srv://tomciosegal:cucharec7164@myfirstcluster-nbawd.mongodb.net/fitness_pot?retryWrites=true&w=majority'
+app.config["MONGO_URI"] = os.environ["MONGO_URI"]
+app.config["SECRET_KEY"] = "qwert"
 login = LoginManager(app)
 mongo = PyMongo(app)
 
@@ -28,11 +29,18 @@ x = mydb.list_collection_names()
 
 DEBUG_LEVEL = "DEBUG"
 
-@app.route('/')
+@app.route('/', methods = ["GET","POST"])
 def index():
     pagination = 6
     next = True
     recipes = mydb.dish.find()
+    if session.get("username"):
+        user = mydb.users.find_one({"username":session.get("username")})
+        recipes = mydb.dish.find({"user_email": user["email"]})
+    if request.args.get("my_email"):
+        recipes = mydb.dish.find({"user_email" : request.args.get("my_email")})
+    if request.args.get("email"):
+        recipes = mydb.dish.find({"user_email" : request.args.get("email")})
     try:
         page=int(request.args.get("page",1))
     except ValueError:
@@ -46,6 +54,29 @@ def index():
         next = False
     recipes = recipes[start:stop] 
     return render_template("index.html",page=page,recipes=recipes, next=next)
+
+@app.route('/login', methods = ['POST', 'GET'])
+def login():
+    users = mongo.db.users
+    login_user = users.find_one({'username' : request.form['username']})
+    if login_user:
+        if request.form['password'] == login_user['password']:
+            session['username'] = request.form['username']
+            session['logged_in'] = True
+            flash('You are logged in as ' + session['username'], 'success')
+            return redirect(url_for('index'))
+    return redirect(url_for('login'), code = 400) 
+
+@app.route('/logout', methods = ['GET'])
+def logout():
+    if session.get('logged_in'):
+        session['logged_in'] = False
+        session.pop('username')
+        flash('You are logged out!')
+        return redirect(url_for('index'))
+    else:
+        return render_template("index.html")
+
 
 
 
@@ -69,6 +100,7 @@ def drinks():
 @app.route('/vegan')
 def vegan():
     return render_template('vegan.html')
+
 
 # @app.route('/allrecipies')
 # def allrecipies():
@@ -116,36 +148,6 @@ def createuser():
     userscol.insert_one(newuser)
     return 'SUCCESS'
     
-@app.route('/login', methods = ['POST'])
-def login():
-    username =  request.form.get('username')
-    password = request.form.get('password')
-    userfromdb = userscol.find_one({ "username": username })
-    if (userfromdb != None and userfromdb['password'] == password):
-        # login_user(userfromdb)
-        return redirect(url_for('index'))
-    else:
-        return redirect(url_for('index'))
-
-   
-
-# @app.route('/createrecepie', methods = ['POST'])
-# def createrecepie():
-#     print (request.form.get('user_name'))
-#     newrecipe = {"title" :"test recepie", 
-#               "category" : "vegan",
-#               "image" : "test_image.jpeg",
-#               "cooking_time" : "40",
-#               "serves" : "2",
-#               "calories" : "100",
-#               "author" : "John",
-#               "ingredients" : "a,b,c",
-#               "instructions" : "dsfdgfdsf",
-#               "nutrition" : "fbfgdsdf"
-#         }
-#     mycol.insert_one(newrecipe)
-#     return 'TEST'
-
 @app.route('/createrecepie', methods=['POST'])
 def createrecepie():
     print("aaaaaaaaa")
@@ -168,7 +170,7 @@ def createrecepie():
     if (DEBUG_LEVEL == "DEBUG"):
         print("newrecipe = ", newrecipe)
 
-    #recipes.insert_one(newrecipe)
+    
     mycol.insert_one(newrecipe)
 
     

@@ -39,6 +39,9 @@
           <li class="nav-item">
             <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" id="signup_btn">Sign Up</button>
           </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -137,10 +140,10 @@
   <form class="modal-content animate" action="{{ url_for('login') }}" method="POST">
   <span class="close" title="Close Modal">×</span>
       <div class="container">
-      <label for="uname"><b>Username</b></label>
+      <label for="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="username" required>
 
-      <label for="psw"><b>Password</b></label>
+      <label for="password"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="password" required>
         
       <button type="submit">Login</button>
