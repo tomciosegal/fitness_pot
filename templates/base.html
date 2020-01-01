@@ -30,10 +30,37 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{{ url_for('index') }}">Home</a>
           </li>
-          <li class="nav-item">
+          <li> 
             <a class="nav-link js-scroll-trigger" href="{{ url_for('addrecipe') }}">Add Recipie</a>
           </li>
-          <li class="nav-item">
+               <li class="nav-item">
+                {% if session['logged_in'] == True %}
+                    <button onclick="document.getElementById('id04').style.display='block'" style="width:auto;" id="uname_btn">Hi {{session['username']}}!</button>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
+          </li> -->                    <!-- <button onclick="document.getElementById('id03').style.display='block'" style="width:auto;" id="logout_btn">Logout</button> -->
+                
+                {% else %}
+                    <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;" id="login_btn">Login</button>
+                    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" id="signup_btn">Sign Up</button>
+                {% endif %}
+
+          </li >
+
+          <!-- <div class="container" style="min-height:100% width:80%"> -->
+          <li class ="login-flash">
+          {% with messages = get_flashed_messages() %}
+	        {% if messages %}
+	            {% for message in messages %}
+			        {{message}}
+		        {% endfor %}
+	        {% endif %}
+	      {% endwith %}
+
+	      {% block body %}{% endblock %}
+          </li>
+	<!-- </div> -->
+          <!-- <li class="nav-item">
             <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;" id="login_btn">Login</button>
           </li>
           <li class="nav-item">
@@ -41,7 +68,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -72,13 +99,13 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-4">
-          <span class="copyright">Copyright &copy; Your Website 2019</span>
+          <span class="copyright">Copyright &copy; Tomasz Cygal Code Institude 2020</span>
         </div>
         <div class="col-md-4">
           <ul class="list-inline social-buttons">
             <li class="list-inline-item">
               <a href="#">
-                <i class="fab fa-twitter"></i>
+                <i class="fab fa-github"></i>
               </a>
             </li>
             <li class="list-inline-item">
@@ -95,11 +122,8 @@
         </div>
         <div class="col-md-4">
           <ul class="list-inline quicklinks">
-            <li class="list-inline-item">
-              <a href="#">Privacy Policy</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">Terms of Use</a>
+             <li class="list-inline-item">
+                <a href="https://codeinstitute.net/" target="_blank">School Project</a>
             </li>
           </ul>
         </div>
@@ -107,7 +131,7 @@
     </div>
   </footer>
 
- 
+
 
 
 <!-- Modal for sign up -->
@@ -134,6 +158,9 @@
   </form>
 </div>
 
+
+	<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script> -->
 
 <div id="id02" class="modal">
   <span class="close" title="Close Modal">×</span>
@@ -173,6 +200,7 @@
   <script src="{{ url_for('static', filename='js/agency.min.js') }}"></script>
 <script>
 
+/*function written to close pop up window outside the modal or on X "close button"*/
 window.addEventListener('click', function(event){
     const modal = document.getElementById('id01');
     const login_modal = document.getElementById('id02');

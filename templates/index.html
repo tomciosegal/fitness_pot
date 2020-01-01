@@ -27,15 +27,15 @@
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="card-body">
 									
-									<p class="card-text"><i class="fab fa-bandcamp"></i> {{recipe.category_name}}</p>
+									<p class="card-text"><i class="fab fa-bandcamp"></i> {{recipe.category}}</p>
 									<p class="card-text"><i class="fas fa-clock"></i> {{recipe.cooking_time}} min</p>
-									<p class="card-text"><i class="fas fa-user-friends"></i> {{recipe.serves}}</p>
+									<p class="card-text"><i class="fas fa-user-friends"></i> {{recipe.serves}} people</p>
 									<small class="text-muted"><i class="fas fa-user-edit"></i> {{recipe.author}}</small>
 								</div>
 							</div>
 						</div>
 						<div class="card-footer d-flex justify-content-center">
-                         <a class="nav-link js-scroll-trigger" href="{{ url_for('recipe_details' , recipe=recipe._id,action='index') }}">Show Recipie</a> -->
+                         <!-- <a class="nav-link js-scroll-trigger" href="{{ url_for('recipe_details' , recipe=recipe._id,action='index') }}">Show Recipie</a> -->
 							 <button type="button" class="btn btn-outline-dark"
 								onclick="window.location.href='{{ url_for( 'recipe_details' , recipe=recipe._id,action='index' ) }}';">View
 								Recipe</button> 

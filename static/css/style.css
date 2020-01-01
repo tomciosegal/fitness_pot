@@ -1,5 +1,5 @@
 
-/*header edited from bootstrap to my needs */
+/*header  from bootstrap edited to my needs */
 
 *{
     box-sizing: border-box;
@@ -89,7 +89,7 @@ input[type=text]:focus, input[type=password]:focus {
 button {
   background-color: #4CAF50;
   color: white;
-  padding: 4px 20px;
+  padding: 1px 30px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
@@ -169,9 +169,17 @@ The Close Button (x) */
   display: table;
 }
 
+
+
+/*LOGIN FLASH IN NAVBAR*/
+.login-flash{
+    padding-top: 40px;
+    color: green;
+}
+
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
   .cancelbtn, .signupbtn {
      width: 100%;
   }
-} *
+} 

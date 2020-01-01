@@ -8,7 +8,7 @@ from flask_login import current_user, login_user
 from dotenv import load_dotenv
 
 load_dotenv()
-print(os.environ)
+# print(os.environ)
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'fitness_pot'
 app.config["MONGO_URI"] = os.environ["MONGO_URI"]
@@ -54,6 +54,25 @@ def index():
         next = False
     recipes = recipes[start:stop] 
     return render_template("index.html",page=page,recipes=recipes, next=next)
+
+# @app.route('/create_user', methods = ['POST', 'GET'])
+# def createuser():
+#     error = ''
+#     if request.method == 'POST':
+#         users = mongo.db.users
+#         user_exist = users.find_one({'name' : request.form['username']})
+
+#         if user_exist is None:
+#             # for password encryption
+#             #hash_pass = bcrypt.hashpw(request.form['password'], bcrypt.gensalt())
+#             #users.insert({'name' : request.form['username'], 'password' : hash_pass})
+#             users.insert({'name' : request.form['username'], 'password' : request.form['password']})
+#             flash('Your account is created! You are now able to log in', 'success')
+#             return redirect(url_for('login'))
+#         else:
+#             error = "The username already exists. Try different username!!"
+#             return redirect(url_for('createuser'), error=error)
+#     return render_template('base.html')
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
