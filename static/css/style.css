@@ -1,5 +1,5 @@
 body{
-    background-color: #d7ead770;
+    background-color: #d7ead7b5;
 }
 /*header  from bootstrap edited to my needs */
 
@@ -54,13 +54,13 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
 }
 
 .text-muted1{
-    color:#ef0808;
+    color:#182d1bd4;
 }
 
 .intro-lead-inn{
-    color: #ef0808;
+    color:#182d1bd4;
     position: relative;
-    top: -80px;
+    top: -20px;
     font-size: 20px;
     font-style: oblique; 
 }
@@ -77,6 +77,19 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
 }
 
 /*RECIPE DETAILS CONTAINER*/
+.card-footer1{
+    background-color: #e2f0e2;
+}
+.details-button{
+    background-color: #4caf50;
+    color: white;
+}
+.details-button:hover{
+    background-color: #295d2b
+        
+    
+}
+/*---------------------------------------------------------------------------------------------------*/
 
 
 header.masthead{
@@ -90,10 +103,6 @@ header.masthead .intro-text {
     
 }
 /*RECIPE*/
-/* .recipe-info{
-    position: relative;
-    top: 100px;
-} */
 .recipe-img {
     margin-top: 25px;
 }
@@ -225,12 +234,18 @@ hr {
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
+@media screen and (min-width: 300px) {
   .cancelbtn, .signupbtn {
      width: 100%;
   }
   
+ 
+  .footer {
+    padding: 5px 0px;
+    text-align: center;
+    background-color: #c0e0c0
 }
+
 @media screen and (min-width: 576px){
     .recipe-info{
     position: relative;
