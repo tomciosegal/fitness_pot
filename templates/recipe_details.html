@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
+<article>
 <div id="detail_container" class="container">
 	<div class="row col-md-12 mb-5">
 		<div class="card recipe-card">
 			<div class="row">
-				<div class="col-md-6 bg-img"></div>
+				<div class="col-md-6 bg-img">
 					{% if recipe.image %}
 					<img src="/static/img/some_recipies/{{recipe.image}}" class="col-sm-4 col-md-8 recipe-img" />
                     {% else %}
 					<img src="/static/img/some_recipies/dumbell.jpg" class="col-sm-4 col-md-8 recipe-img"/>
                     {% endif %}
                  </div>
-					<div class="col-md-6 text-center" style="margin-top: 100px;">
+					<div class="col-md-6 text-center recipe-info">
 						<p class="card-text"><strong>Category:</strong> {{recipe.category}}</p>
 						<p class="card-text"><strong>Cooking Time:</strong> {{recipe.cooking_time}} min</p>
 						<p class="card-text"><strong>Serves:</strong> {{recipe.serves}}</p>
 						<p class="card-text"><strong>Author:</strong> {{recipe.author}}</p>
 					</div>
+                    </div>
 				</div>
 				<div class="card-body">
 					<h2 class="card-title text-center" style="text-align: center;font-weight: bold;">{{recipe.title}}
@@ -35,5 +37,6 @@
 				</div>
 			</div>
 		</div>
+        </article>
 	</div>
 	{% endblock %}

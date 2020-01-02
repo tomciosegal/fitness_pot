@@ -8,7 +8,7 @@ from flask_login import current_user, login_user
 from dotenv import load_dotenv
 
 load_dotenv()
-# print(os.environ)
+
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'fitness_pot'
 app.config["MONGO_URI"] = os.environ["MONGO_URI"]
@@ -96,10 +96,6 @@ def logout():
     else:
         return render_template("index.html")
 
-
-
-
-
 @app.route('/breakfast')
 def breakfast():
     return render_template('breakfast.html')
@@ -118,15 +114,7 @@ def drinks():
 
 @app.route('/vegan')
 def vegan():
-    return render_template('vegan.html')
-
-
-# @app.route('/allrecipies')
-# def allrecipies():
-#     recipies = mydb.dish.find()
-#     return render_template('allrecipies.html', recipies=recipies)
-
-        
+    return render_template('vegan.html')     
 
 def home_page1():
      pprint.pprint(mycol.find_one({"category": "dinner"}))

@@ -1,4 +1,6 @@
-
+body{
+    background-color: #d7ead770;
+}
 /*header  from bootstrap edited to my needs */
 
 *{
@@ -8,12 +10,61 @@
 
 /*NAVBAR*/
 
+#mainNav .navbar-toggler{
+background-color: #4fa955;
+}
+
 #mainNav .navbar-brand{
     position: relative;
     top: -10px;
     font-size: 25px;
+    }
+#mainNav .navbar-brand :hover{
+    color:#76c180
 }
 
+.register-button{
+    background-color: #c0e0c0    
+}
+
+.register-button :hover{
+    background-color: rgba(0,0,0,0.1);
+}
+
+.nav-link{
+    padding: 5px .5rem !important;
+    background-color: #c0e0c0
+}
+
+.nav-link:hover{
+    background-color: rgba(0,0,0,0.1);   
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    color: #097d17;
+}
+
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
+    height: auto;
+}
+
+.menu-button{
+    position: relative;
+    top: -11px;
+}
+
+.text-muted1{
+    color:#ef0808;
+}
+
+.intro-lead-inn{
+    color: #ef0808;
+    position: relative;
+    top: -80px;
+    font-size: 20px;
+    font-style: oblique; 
+}
+/*-------------------------------------------------------------------------------------------------------------*/
 /*prevoius and next buttons for pagination main page*/
 .next{
     position: relative;
@@ -24,6 +75,10 @@
     position: relative;
     right: -200px;
 }
+
+/*RECIPE DETAILS CONTAINER*/
+
+
 header.masthead{
 height: 550px;
 }
@@ -34,57 +89,44 @@ header.masthead .intro-text {
     top: 40px;
     
 }
-
+/*RECIPE*/
+/* .recipe-info{
+    position: relative;
+    top: 100px;
+} */
 .recipe-img {
     margin-top: 25px;
 }
 
-email form and hovering send button
-.email-form {
-    font-family: "Courgette", sans-serif;
-    font-size: 14px;
-    padding: 15px;
-    background-color: #edf7ef;
-    border-radius: 15px;
-
-}
-
-.send-btn {
-    background-color: #16630b;
-    border-color: #1a1a1a;
-    color: #fff;
-}
-
-.send-btn:hover {
-    text-decoration: none;
-    background-color: #76c180!important;
-    border-color: #76c180!important;
-    color: #ffff;
-}
 /* add recipies form css styled */
    label color
    .input-field label {
      color: #000;
    }
+
    /* label focus color */
    .input-field input[type=text]:focus + label {
      color: #000;
    }
+
    /* label underline focus color */
    .input-field input[type=text]:focus {
      border-bottom: 1px solid #000;
      box-shadow: 0 1px 0 0 #000;
    }
+
    /* valid color */
    .input-field input[type=text].valid {
      border-bottom: 1px solid #000;
      box-shadow: 0 1px 0 0 #000;
    }
+
    /* invalid color */
    .input-field input[type=text].invalid {
      border-bottom: 1px solid #000;
      box-shadow: 0 1px 0 0 #000;
    }
+   
    /* icon prefix focus color */
    .input-field .prefix.active {
      color: #000;
@@ -118,7 +160,7 @@ button {
 }
 
 button:hover {
-  opacity:1;
+  background-color: rgba(0,0,0,0.3);
 }
 
 Extra styles for the cancel button */
@@ -134,12 +176,10 @@ Float cancel and signup buttons and add an equal width */
 }
 
 Add padding to container elements */
-/* /* .container {
-  padding: 16px;
-} */
+
 
 /* The Modal (background) */
-/* .modal {
+.modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -166,21 +206,7 @@ hr {
   margin-bottom: 25px;
 }
  
-*/
-/* .close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
 
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
-}
 
 /* Clear floats */
 .clearfix::after {
@@ -189,22 +215,7 @@ hr {
   display: table;
 }
 
-.nav-link{
-    padding: 5px .5rem !important;
-}
 
-.navbar-dark .navbar-nav .nav-link{
-    color: #097d17;
-}
-
-nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
-    height: auto;
-}
-
-.menu-button{
-    position: relative;
-    top: -11px;
-}
 
 
 /*LOGIN FLASH IN NAVBAR*/
@@ -218,7 +229,35 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
   .cancelbtn, .signupbtn {
      width: 100%;
   }
-  .body{
+  
+}
+@media screen and (min-width: 576px){
+    .recipe-info{
+    position: relative;
+    top: -90px;
+    right: -59px;
+}
+.recipe-img {
+    position: relative;
+    top: 60px;
+    left: 25px;
+}
+}
 
-  }
-} 
+@media screen and (min-width: 768px){
+   .recipe-info{
+    position: relative;
+    top: 50px;
+    right: 50px;
+   } 
+   .recipe-img {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+@media screen and (min-width: 992px){
+    .recipe-info{
+    position: relative;
+    top: 100px;
+}
