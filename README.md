@@ -1,2 +1,2 @@
 # FITNESS POT
-![alt text](/static/images/some_recipies/dumbell.jpg "Fitness Pot")
+![alt text](/static/img/some_recipies/dumbell.jpg "Fitness Pot")

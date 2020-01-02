@@ -17,7 +17,7 @@
 /*prevoius and next buttons for pagination main page*/
 .next{
     position: relative;
-    left: 300px;
+    left: 230px;
 }
 
 .previous{
@@ -219,6 +219,6 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
      width: 100%;
   }
   .body{
-      
+
   }
 } 
