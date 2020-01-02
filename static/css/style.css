@@ -5,12 +5,33 @@
     box-sizing: border-box;
 }
 
+
+/*NAVBAR*/
+
+#mainNav .navbar-brand{
+    position: relative;
+    top: -10px;
+    font-size: 25px;
+}
+
+/*prevoius and next buttons for pagination main page*/
+.next{
+    position: relative;
+    left: 300px;
+}
+
+.previous{
+    position: relative;
+    right: -200px;
+}
 header.masthead{
 height: 550px;
 }
 
 header.masthead .intro-text {
     padding-top:150px; 
+    position: relative;
+    top: 40px;
     
 }
 
@@ -93,7 +114,6 @@ button {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
   opacity: 0.9;
 }
 
@@ -135,9 +155,9 @@ Add padding to container elements */
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 80%; Could be more or less, depending on screen size
+  width: 80%; /*Could be more or less, depending on screen size*/
 } 
 
 /* Style the horizontal ruler */
@@ -146,7 +166,7 @@ hr {
   margin-bottom: 25px;
 }
  
-The Close Button (x) */
+*/
 /* .close {
   position: absolute;
   right: 35px;
@@ -169,6 +189,22 @@ The Close Button (x) */
   display: table;
 }
 
+.nav-link{
+    padding: 5px .5rem !important;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    color: #097d17;
+}
+
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
+    height: auto;
+}
+
+.menu-button{
+    position: relative;
+    top: -11px;
+}
 
 
 /*LOGIN FLASH IN NAVBAR*/
@@ -181,5 +217,8 @@ The Close Button (x) */
 @media screen and (max-width: 300px) {
   .cancelbtn, .signupbtn {
      width: 100%;
+  }
+  .body{
+      
   }
 } 

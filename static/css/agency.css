@@ -163,7 +163,7 @@ img::-moz-selection {
 }
 .navbar-nav .nav-item .nav-link {
     padding-left: 45px;
-    width: 90px;
+    
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   font-size: 90%;
@@ -188,12 +188,14 @@ img::-moz-selection {
     transition: all 0.3s;
   }
   #mainNav .navbar-nav .nav-item .nav-link {
-    padding: 9px;
+    
   }
   #mainNav.navbar-shrink {
     padding-top: 0;
     padding-bottom: 0;
     background-color: #212529;
+    text-align: center;
+    color: #2e8e37;
   }
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.25em;
