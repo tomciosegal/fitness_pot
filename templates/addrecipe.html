@@ -39,28 +39,36 @@
           <input placeholder="Placeholder" id="name" value="{{recipe.title}}"name="name" type="text" class="validate">
           <label for="name">Name</label>
         </div>
-        <div class="input-field col s6">
-          <input name="user_name" id="user_name" value="{{recipe.username}}"type="text" class="validate">
-          <label for="user_name">Username</label>
+         <div class="select-field col s6">
+         <select id="category" name="category_name" class="form-control">
+                            <option disabled="" selected="">Choose Category</option>
+                            
+                            <option value="breakfast">Breakfast</option>
+                            
+                            <option value="dinner">Dinner</option>
+                            
+                            <option value="vegan">Vegan</option>
+                            
+                            <option value="desserts">Desserts</option>
+							
+							<option value="desserts">Drinks</option>
+                            
+                        </select>
         </div>
+     </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input name="title"id="title" type="text" class="validate">
+                    <label for="title">Name Dish</label>
+            </div>
+            <div class="input-field col s6">
+                <input name = "serves" id="serves" type="text" class="validate">
+                    <label for="serves">How Many Serves</label>
+            </div>
       </div>
-
-    
+      
       <div class="row">
-        <div class="input-field col s6">
-          <input name="title"id="title" type="text" class="validate">
-          <label for="title">Name Dish</label>
-        </div>
-        <div class="input-field col s6">
-          <input name = "serves" id="serves" type="text" class="validate">
-          <label for="serves">How Many Serves</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input name="mail" id="mail" type="text" class="validate">
-          <label for="mail">Email</label>
-        </div>
+          
         
         <!-- <div class="input-field col s6">
           <select id="category" name="category" class="form-control">
@@ -79,7 +87,7 @@
 					
 				
 			</div>
-      </div>
+    </div>
       <div class="row">
           <div class="input-field col s12">
             <textarea name = "image_url"id="image_url" class="materialize-textarea" data-length="500"></textarea>

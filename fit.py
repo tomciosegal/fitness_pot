@@ -96,25 +96,6 @@ def logout():
     else:
         return render_template("index.html")
 
-@app.route('/breakfast')
-def breakfast():
-    return render_template('breakfast.html')
-
-@app.route('/dinner')
-def dinner():
-    return render_template('dinner.html')
-
-@app.route('/dessert')
-def dessert():
-    return render_template('dessert.html')
-
-@app.route('/drinks')
-def drinks():
-    return render_template('drinks.html')
-
-@app.route('/vegan')
-def vegan():
-    return render_template('vegan.html')     
 
 def home_page1():
      pprint.pprint(mycol.find_one({"category": "dinner"}))

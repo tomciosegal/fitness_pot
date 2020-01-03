@@ -5,10 +5,8 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-
+  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">  
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}">
@@ -140,7 +138,7 @@
 
 <!-- Modal for sign up -->
   <div id="id01" class="modal">
-  <span class="close" title="Close Modal">&times;</span>
+  <span class="close" title="Close Modal" id="close_signup">&times;</span>
   <form class="modal-content" action="{{ url_for('createuser') }}" method="POST">
     <div class="container">
       <h1>Sign Up</h1>
@@ -169,7 +167,7 @@
 <div id="id02" class="modal">
   <span class="close" title="Close Modal">×</span>
   <form class="modal-content animate" action="{{ url_for('login') }}" method="POST">
-  <span class="close" title="Close Modal">×</span>
+  <span class="close" title="Close Modal" id="close_login">×</span>
       <div class="container">
       <label for="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="username" required>
@@ -194,21 +192,17 @@
   <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
   <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Contact form JavaScript -->
-  <script src="js/jqBootstrapValidation.js"></script>
-  <script src="js/contact_me.js"></script>
+  <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
   <!-- Custom scripts for this template -->
   <script src="{{ url_for('static', filename='js/agency.min.js') }}"></script>
 <script>
 
+const modal = document.getElementById('id01');
+const login_modal = document.getElementById('id02');
+
 /*function written to close pop up window outside the modal or on X "close button"*/
 window.addEventListener('click', function(event){
-    const modal = document.getElementById('id01');
-    const login_modal = document.getElementById('id02');
-
     const login_btn = document.querySelector('#login_btn');
     const signup_btn = document.querySelector('#signup_btn');
 
@@ -220,9 +214,19 @@ window.addEventListener('click', function(event){
 
     if (event.target != login_modal && event.target != login_btn) {
         if(login_modal.contains(event.target) == false){
-            login_modal.style.display = "none";
+           
         }
     }
+});
+
+const close_login = document.querySelector('#close_login');
+close_login.addEventListener('click', function(){
+    login_modal.style.display = "none";
+});
+
+const close_signup = document.querySelector('#close_signup');
+close_signup.addEventListener('click', function(){
+    modal.style.display = "none";
 });
 
 
