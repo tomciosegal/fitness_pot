@@ -1,5 +1,26 @@
 {% extends 'base.html'%} {% block content %}
 <main role="main">
+
+    <div class="row dropdown">
+        <div class= "col-md-6">
+        </div>
+        <div class= "col-md-6">
+        <p class="browse-category">Browse Food By Category</p>
+        <a id="my-dropdown" href="#" class="btn btn-primary dropdown-toggle select-category" data-toggle="dropdown">Select Category</a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href= "{{url_for('index')}}">All Recipes</a>
+                </li>
+                {% for category in categories %}
+                    <li>
+                        <a class = ""href = "{{url_for('index', category = category)}}">{{category}}</a>
+                    </li>
+                {% endfor %}
+                </div>
+            </ul>
+    
+    </div>
+
 	<h1 style="
     margin-top: 40px;
     margin-left: 30px;
@@ -7,7 +28,9 @@
     text-align: center;
     color: #1d2124;
     
-">All Recipes</h1>
+"
+    > {{selected_category}}</h1>
+
 	<div class="album py-5 bg-light">
 		<div class="container">
 
@@ -18,7 +41,11 @@
 						<p class=" bd-placeholder-img card-img-top" width="100%" height="225" alt="{{ recipe.title }}">
 						</p>
 						{% if recipe.image %}
-						<img src="/static/img/some_recipies/{{recipe.image}}" class="img-fluid img-thumbnail"/>
+                            {% if "http" in recipe.image  %}
+                                <img src="{{recipe.image}}" class="img-fluid img-thumbnail"/>
+                            {% else %}    
+						        <img src="/static/img/some_recipies/{{recipe.image}}" class="img-fluid img-thumbnail"/>
+                            {% endif %}
                         {% else %}
 						<img src="/static/img/some_recipies/dumbell.jpg.jpg" class="img-fluid img-thumbnail"/>
                          {% endif %}
@@ -52,12 +79,16 @@
 	</div>
     <div class="row">
         <div class = col-md-6>
+    {% if page > 1 %}
     <a href="{{ url_for( 'index' , page=page-1 ) }}" class="previous">&laquo; Previous</a>
+    {% endif %}
+
     {% if next %}
     </div>
     <div class = col-md-6>
     <a href="{{ url_for( 'index' , page=page+1 ) }}" class="next">Next &raquo;</a>
     {% endif %}
+    
     </div>
     </div>
 </main>

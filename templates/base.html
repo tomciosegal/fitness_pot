@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css' )}}" type="text/css" />
     <title>Fitness Pot</title>
 <body id="page-top">
-
   <!-- Navigation -->
    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
@@ -28,9 +27,11 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{{ url_for('index') }}">Home</a>
           </li>
+          
           <li> 
             <a class="nav-link js-scroll-trigger" href="{{ url_for('addrecipe') }}">Add Recipie</a>
           </li>
+          
                <li class="nav-item">
                 {% if session['logged_in'] == True %}
                     <button onclick="document.getElementById('id04').style.display='block'" style="width:auto;" id="uname_btn">Hi {{session['username']}}!</button>
@@ -73,8 +74,16 @@
   </nav>
 
   <!-- Header -->
-  <header class="masthead" style="background-image: url('https://www.happyfamilyorganics.com/wp-content/uploads/2018/08/126-Strategies-for-creating-a-healthy-kitchen_182307536.jpg')">
-    <div class="container">
+
+   {% if should_show_background_image == True %}
+   <header class="masthead" style="background-image: url('https://www.happyfamilyorganics.com/wp-content/uploads/2018/08/126-Strategies-for-creating-a-healthy-kitchen_182307536.jpg')">
+   {% else %}
+   <header class="masthead d-none d-lg-block" style="background-image: url('https://www.happyfamilyorganics.com/wp-content/uploads/2018/08/126-Strategies-for-creating-a-healthy-kitchen_182307536.jpg')">
+   
+   {% endif %}
+
+  <!-- <header class="masthead d-none d-lg-block" style="background-image: url('https://www.happyfamilyorganics.com/wp-content/uploads/2018/08/126-Strategies-for-creating-a-healthy-kitchen_182307536.jpg')"> -->
+    <div class="header-container">
       <div class="intro-text">
         <div class="intro-lead-inn">Welcome To Our Fitness Kitchen!</div>
         <div class="intro-heading"><p class="text-muted1">Hungry? Cook Something!</p></div>

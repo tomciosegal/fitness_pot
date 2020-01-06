@@ -6,6 +6,7 @@ import json
 from flask_login import LoginManager
 from flask_login import current_user, login_user
 from dotenv import load_dotenv
+from utilities import paginate
 
 load_dotenv()
 
@@ -32,28 +33,26 @@ DEBUG_LEVEL = "DEBUG"
 @app.route('/', methods = ["GET","POST"])
 def index():
     pagination = 6
-    next = True
     recipes = mydb.dish.find()
-    if session.get("username"):
-        user = mydb.users.find_one({"username":session.get("username")})
-        recipes = mydb.dish.find({"user_email": user["email"]})
-    if request.args.get("my_email"):
-        recipes = mydb.dish.find({"user_email" : request.args.get("my_email")})
-    if request.args.get("email"):
-        recipes = mydb.dish.find({"user_email" : request.args.get("email")})
-    try:
-        page=int(request.args.get("page",1))
-    except ValueError:
-        page = 1
-    if page < 1:
-        page = 1
-    start = int(pagination * (page -1))
-    stop = int(pagination * page)
-    recipes = [x for x in recipes]
-    if stop > len(recipes):
-        next = False
-    recipes = recipes[start:stop] 
-    return render_template("index.html",page=page,recipes=recipes, next=next)
+    
+    selected_category = "All Recipes"
+
+    if request.args.get("category"):
+        selected_category = request.args.get("category").capitalize() + " Recipes" 
+
+    if request.args.get("category"):
+        recipes = mydb.dish.find({"category" : request.args.get("category")})    
+    # if session.get("username"):
+    #     user = mydb.users.find_one({"username":session.get("username")})
+    #     recipes = mydb.dish.find({"user_email": user["email"]})
+    # if request.args.get("my_email"):
+    #     recipes = mydb.dish.find({"user_email" : request.args.get("my_email")})
+    # if request.args.get("email"):
+    #     recipes = mydb.dish.find({"user_email" : request.args.get("email")})
+    recipes, page, next  = paginate(recipes, pagination, request.args.get("page"))
+    categories = set([x.get("category") for x in mydb.dish.find() if x.get("category")])
+    
+    return render_template("index.html",page=page,recipes=recipes, next=next, categories = categories, selected_category=selected_category, should_show_background_image=True)
 
 # @app.route('/create_user', methods = ['POST', 'GET'])
 # def createuser():
@@ -103,7 +102,8 @@ def home_page1():
 
 @app.route('/addrecipe')
 def addrecipe():
-    return render_template('addrecipe.html', recipe=None, text="Add Recipe", button_text="Add new recipe")
+    categories = set([x.get("category") for x in mydb.dish.find() if x.get("category")])
+    return render_template('addrecipe.html', recipe=None, text="Add Recipe", button_text="Add new recipe", categories = categories, should_show_background_image=False)
 
 @app.route('/myrecipies')
 def myrecipies():
@@ -118,11 +118,11 @@ def recipe_details():
     the_recipe = mongo.db.dish.find_one({"_id": ObjectId(recipe)})
     
     if action == 'index':
-        return render_template("recipe_details.html", recipe=the_recipe)
+        return render_template("recipe_details.html", recipe=the_recipe, should_show_background_image=False)
     elif action == 'edit':
         print("the_recipe", the_recipe)
         the_recipe["parsed_ingredients"] = parse_array(the_recipe.get("ingredients"))
-        return render_template("addrecipe.html", recipe=the_recipe, text="Edit Recipe", button_text="Update recipe")
+        return render_template("addrecipe.html", recipe=the_recipe, text="Edit Recipe", button_text="Update recipe", should_show_background_image=False)
     elif action == 'delete':
         #mongo.db.recipes.delete_one({"_id": ObjectId(recipe)})
         mycol.delete_one({"_id": ObjectId(recipe)})
@@ -140,7 +140,6 @@ def createuser():
     
 @app.route('/createrecepie', methods=['POST'])
 def createrecepie():
-    print("aaaaaaaaa")
     print(request.form)
 
     recipes = mongo.db.dish
@@ -148,11 +147,11 @@ def createrecepie():
     
     newrecipe = {
         "name": request.form.get('name'),
-        "user_name": request.form.get('user_name'),
+        "user_name": session.get("username"),
         "title": request.form.get('title'),
         "serves": request.form.get('serves'),
         "mail": request.form.get('mail'),
-        "image_url": request.form.get('image_url'),
+        "image": request.form.get('image_url'),
         "ingredients": request.form.get('ingredients'),
         "instructions": request.form.get('instructions')
 

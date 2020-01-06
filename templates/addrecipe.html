@@ -4,17 +4,21 @@
 
 
 
-    <h1>{{text}}</h1>
+    <h1 class = "recipe-header">{{text}}</h1>
     
 
     <div class=class="row m-0 p-2 mt-3 mb-4">
     <div class="offset-2 col-8 email-form">
         <div class="row no-gutters">
+         {% if not session.get('logged_in') %}
             <div class="col-12">
-                <p class="usr-msg">Use the Form below to send us a recipe, or enter your Email Address to View, Edit, or Delete your recipes.</p>
+                <p class="user-msg">Please Login to add recipe</p>
             </div>
+            {% endif %}
         </div>
-        <div class="row no-gutters">
+       
+        
+        <!-- <div class="row no-gutters">
             <form action="{{ url_for('index') }}" class="email-form-style col-12" method="GET">
 
                 <div class="row no-gutters">
@@ -28,10 +32,12 @@
 
                 </div>
             </form>
-        </div>
+        </div> -->
+        
     </div>
 </div>
-
+     {% if session.get('logged_in') %}
+  <div>
   <div class="row">
     <form class="col s12" action="{{ url_for('createrecepie') }}" method="POST">
       <div class="row">
@@ -42,18 +48,10 @@
          <div class="select-field col s6">
          <select id="category" name="category_name" class="form-control">
                             <option disabled="" selected="">Choose Category</option>
-                            
-                            <option value="breakfast">Breakfast</option>
-                            
-                            <option value="dinner">Dinner</option>
-                            
-                            <option value="vegan">Vegan</option>
-                            
-                            <option value="desserts">Desserts</option>
-							
-							<option value="desserts">Drinks</option>
-                            
-                        </select>
+                            {% for category in categories %}
+                            <option value="{{category}}">{{category}}</option>
+                            {% endfor %}
+         </select>
         </div>
      </div>
         <div class="row">
@@ -107,11 +105,14 @@
             <label for="instructions">Instructions (one per line)</label>
           </div>
         </div>
-
+        {% if session["username"] %}
         <button class="btn waves-effect waves-light" type="submit" name="action">{{button_text}}
     <i class="material-icons right">send</i>
+    {% endif %}
     </form>
   </div>
+
+  {% endif %}
 
 
 

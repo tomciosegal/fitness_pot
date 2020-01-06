@@ -24,7 +24,8 @@ background-color: #4fa955;
 }
 
 .register-button{
-    background-color: #c0e0c0    
+    background-color: #c0e0c0 
+    margin-right: -4px;   
 }
 
 .register-button :hover{
@@ -54,11 +55,11 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
 }
 
 .text-muted1{
-    color:#182d1bd4;
+    color:#ffffffbd;
 }
 
 .intro-lead-inn{
-    color:#182d1bd4;
+    color:#ffffffbd;
     position: relative;
     top: -20px;
     font-size: 20px;
@@ -184,7 +185,36 @@ Float cancel and signup buttons and add an equal width */
   width: 50%;
 }
 
-Add padding to container elements */
+.user-msg{
+    color: red;
+    text-align: center;
+    font-size: 20px;
+}
+
+.recipe-header{
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+/*-----------------------------------------SELECT CATEGORY BUTTON HOME PAGE-----------------------------------*/
+.select-category{
+    position: relative;
+    left: 220px;
+    top: 25px;
+    background-color: #5bb65f;
+}
+
+.select-category:hover{
+    background-color: #295d2b
+}
+
+.browse-category{
+    position: relative;
+    top: 25px;
+}
+/*-------------------------------------------------------------------------------------------------------*/
+
 
 
 /* The Modal (background) */
