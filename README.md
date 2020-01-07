@@ -204,6 +204,11 @@ The photos and recipes have been copied from the following websites:
 - [Healthy Fitness Meals](https://healthyfitnessmeals.com/) - all recipes and meal images
 - [Pixabay](https://pixabay.com/) - deafault image if none added to recipe
 
+## **9.2 Content
+
+Git Branch - https://www.atlassian.com/git/tutorials/using-branches 
+
+
 ## **10. Acknowledgements
 
 - I received inspiration for the style of my project from [Healthy Kitchen](https://healthyfitnessmeals.com/)

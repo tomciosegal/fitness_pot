@@ -42,36 +42,11 @@ def index():
 
     if request.args.get("category"):
         recipes = mydb.dish.find({"category" : request.args.get("category")})    
-    # if session.get("username"):
-    #     user = mydb.users.find_one({"username":session.get("username")})
-    #     recipes = mydb.dish.find({"user_email": user["email"]})
-    # if request.args.get("my_email"):
-    #     recipes = mydb.dish.find({"user_email" : request.args.get("my_email")})
-    # if request.args.get("email"):
-    #     recipes = mydb.dish.find({"user_email" : request.args.get("email")})
+
     recipes, page, next  = paginate(recipes, pagination, request.args.get("page"))
     categories = set([x.get("category") for x in mydb.dish.find() if x.get("category")])
     
     return render_template("index.html",page=page,recipes=recipes, next=next, categories = categories, selected_category=selected_category, should_show_background_image=True)
-
-# @app.route('/create_user', methods = ['POST', 'GET'])
-# def createuser():
-#     error = ''
-#     if request.method == 'POST':
-#         users = mongo.db.users
-#         user_exist = users.find_one({'name' : request.form['username']})
-
-#         if user_exist is None:
-#             # for password encryption
-#             #hash_pass = bcrypt.hashpw(request.form['password'], bcrypt.gensalt())
-#             #users.insert({'name' : request.form['username'], 'password' : hash_pass})
-#             users.insert({'name' : request.form['username'], 'password' : request.form['password']})
-#             flash('Your account is created! You are now able to log in', 'success')
-#             return redirect(url_for('login'))
-#         else:
-#             error = "The username already exists. Try different username!!"
-#             return redirect(url_for('createuser'), error=error)
-#     return render_template('base.html')
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -103,7 +78,7 @@ def home_page1():
 @app.route('/addrecipe')
 def addrecipe():
     categories = set([x.get("category") for x in mydb.dish.find() if x.get("category")])
-    return render_template('addrecipe.html', recipe=None, text="Add Recipe", button_text="Add new recipe", categories = categories, should_show_background_image=False)
+    return render_template('addrecipe.html', recipe=None, text="Add Recipe", button_text="Add new recipe", form_action="createrecepie", categories = categories, should_show_background_image=False)
 
 @app.route('/myrecipies')
 def myrecipies():
@@ -122,7 +97,7 @@ def recipe_details():
     elif action == 'edit':
         print("the_recipe", the_recipe)
         the_recipe["parsed_ingredients"] = parse_array(the_recipe.get("ingredients"))
-        return render_template("addrecipe.html", recipe=the_recipe, text="Edit Recipe", button_text="Update recipe", should_show_background_image=False)
+        return render_template("addrecipe.html", recipe=the_recipe, text="Edit Recipe", button_text="Update recipe", form_action="updaterecepie", should_show_background_image=False)
     elif action == 'delete':
         #mongo.db.recipes.delete_one({"_id": ObjectId(recipe)})
         mycol.delete_one({"_id": ObjectId(recipe)})
@@ -140,6 +115,7 @@ def createuser():
     
 @app.route('/createrecepie', methods=['POST'])
 def createrecepie():
+    print("i am in createrecepie")
     print(request.form)
 
     recipes = mongo.db.dish
@@ -161,6 +137,40 @@ def createrecepie():
 
     
     mycol.insert_one(newrecipe)
+
+    
+    return redirect(url_for('index'))
+
+
+
+ 
+@app.route('/updaterecepie', methods=['POST'])
+def updaterecepie():
+    print("i am in updaterecepie")
+    recipe_id = request.form.get('recipe_id')
+    print(request.form)
+    print("id", recipe_id)
+
+
+    recipes = mongo.db.dish
+    (request.form.to_dict())
+    
+    newrecipe = {
+        "$set": {
+            "name": request.form.get('name'),
+            "user_name": session.get("username"),
+            "title": request.form.get('title'),
+            "serves": request.form.get('serves'),
+            "mail": request.form.get('mail'),
+            "image": request.form.get('image_url'),
+            "ingredients": request.form.get('ingredients'),
+            "instructions": request.form.get('instructions')
+        }
+    }
+
+    #mycol.update_one({"_id": recipe_id}, newrecipe)
+    mycol.update_one({"_id": ObjectId(recipe_id)}, newrecipe) 
+    # mycol.insert_one(newrecipe)
 
     
     return redirect(url_for('index'))

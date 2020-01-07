@@ -39,12 +39,18 @@
      {% if session.get('logged_in') %}
   <div>
   <div class="row">
-    <form class="col s12" action="{{ url_for('createrecepie') }}" method="POST">
+    <!-- <form class="col s12" action="{{ url_for('createrecepie') }}" method="POST"> -->
+    <form class="col s12" action="{{ url_for(form_action)}}" method="POST">
+    
+
+        <input name = "recipe_id" id="recipe_id" type="hidden" value="{{recipe._id}}">
+    
+
       <div class="row">
-        <div class="input-field col s6">
-          <input placeholder="Placeholder" id="name" value="{{recipe.title}}"name="name" type="text" class="validate">
+        <!-- <div class="input-field col s6">
+          <input placeholder="Placeholder" id="name" name="name" type="text" class="validate">
           <label for="name">Name</label>
-        </div>
+        </div> -->
          <div class="select-field col s6">
          <select id="category" name="category_name" class="form-control">
                             <option disabled="" selected="">Choose Category</option>
@@ -56,7 +62,7 @@
      </div>
         <div class="row">
             <div class="input-field col s6">
-                <input name="title"id="title" type="text" class="validate">
+                <input value="{{recipe.title}}" name="title"id="title" type="text" class="validate">
                     <label for="title">Name Dish</label>
             </div>
             <div class="input-field col s6">
