@@ -27,7 +27,7 @@ The website will:
 6. Allow visitor to browse by allergens
 7.Let user give comments about the dish under recipies
 
-## **2.2.2 USER STORIES** ##
+## **2.2.3 USER STORIES** ##
 -   New to the website i am looking for healthy meals
 -	As user, I would like to check out different recipes
 -	As viewer , I would like to browse recipes by different categories
@@ -43,7 +43,7 @@ The website will:
 # **3. FEATURES**
 ## **3.1 FITNESS POT**
 
-1. The website consists of 5 pages:
+1. The website consists of 4 pages:
 
    [i]   It opens with a **Home** page which:
          - Gives an introduction to the site 
@@ -86,17 +86,64 @@ The website will:
 -   user_email: will be used to identify user when login
 
 # **4. TECHNOLOGIES USED**
-|------------------------------------------------------------------------------------------------------|
-|Technologies  Used           |Sourced From                                                            |
-|-----------------------------|------------------------------------------------------------------------|
-|HTML                         |[w3schools](https://www.w3schools.com/)                                 |
-|CSS                          |[w3schools](https://www.w3schools.com/)                                 |
-|Javascript                   |[developer mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript)                                                                        |
-|Jquery                       |[jQuery website](https://code.jquery.com/)                              |
-|Bootstrap                    |[Bootstrap website](https://getbootstrap.com/)                          |
-|Font Awesome                 |[Font Awesome website](https://fontawesome.com/)                        |
-|Google fonts                 |[Google fonts](https://fonts.google.com/)                               |
-|AutoPrefixer                 |[Autoprefixer website](https://autoprefixer.github.io/)                 |
-|Python                       |[Python docs](https://docs.python.org/3/library/stdtypes.html#range)    |
-|mongodb database             |[mongodb website](https://www.mongodb.com/)                             |
-|------------------------------------------------------------------------------------------------------|
+
+- [**HTML**](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
+    - The project uses **HTML** to create the basic elements and content of my app.
+- [**CSS**](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3)
+    - The project uses **CSS** to apply the custom styles created with **SCSS** to my app. The base.html file is linked directly to the main.min.css stylesheet.
+- [**Bootstrap**](https://getbootstrap.com/)
+    - The project uses the **Bootstrap** framework to add a responsive grid system, prebuilt components, plugins built on jQuery, and Bootstrap styles to my app, before adding my custom styles.
+- [**jQuery**](https://jquery.com)
+    - The project uses **jQuery** as the primary JavaScript functionality. This is both the standard jQuery that is built with Materialize components, and my custom jQuery used in my script.js file.
+- [**Python**](https://www.python.org/)
+    - The project uses **Python** as the back-end programming language for my app.
+- [**PyMongo**](https://api.mongodb.com/python/current/)
+    - The project uses **PyMongo** as the Python API for MongoDB. This API enables linking the data from the back-end database to the front-end app.
+- [**Flask**](https://flask.palletsprojects.com/en/1.0.x/)
+    - The project uses **Flask**, which is a Python microframework.
+- [**Jinja**](https://jinja.palletsprojects.com/en/2.10.x/)
+    - The project uses **Jinja** for templating with Flask in the HTML code. I used **Jinja** to simplify my HTML code, avoid repetition, and allow simpler linking of the back-end to the front-end.
+- [**MongoDB**](https://cloud.mongodb.com/)
+    - The project uses **MongoDB** to store the database in the cloud. The information displayed in the front-end app is pulled from the database store.
+- [**Google Fonts**](https://fonts.google.com/)
+    - The project uses **Google Fonts** to style the text and suit my chosen theme. The brand logo uses the *_Dancing Script_* font and the rest of the site uses the *_Roboto_* font.
+- [**Font Awesome**](https://fontawesome.com/)
+    - The project uses **Font Awesome** for the various icons in my app.
+- [**Gitpod**](https://www.gitpod.io/)
+    - I've used **Gitpod** as the development environment to write the code for my website.
+- [**Gitpod**](https://www.gitpod.io/)
+    - I've used **Gitpod** as the development environment to write the code for my website.   
+
+# **5. Mockups
+
+# **6. Version Control
+
+- [**Git**](https://git-scm.com/)
+    - I've used **Git** as a version control system to regularly add and commit changes made to project in Gitpod, before pushing them to GitHub.
+- [**GitHub**](https://github.com/)
+    - I've used **GitHub** as a remote repository to push and store the committed changes to my project from Git.
+
+# **6.1 Hosting
+
+- [**Heroku**](https://www.heroku.com/)
+    - I've used **Heroku** as the hosting platform to deploy my app.
+
+# **7. TESTING**
+
+I used Google Chrome's Development tools to constantly test each change that I<br/> 
+made to my project and to ensure that it appeared in the desired way on different screen sizes. <br/>
+I also tested my app on different screen sizes (mobile, tablet and desktop) to ensure <br/>
+it appeared in the desired way on different devices.
+
+## **7.1 Code Validation
+
+- I used the [W3C HTML Validator tool](https://validator.w3.org/#validate_by_input) to validate my HTML code.
+    - The W3C Validator tool doesn't recognise the Jinja templating, which has resulted in it showing a lot of errors in relation to the Jinja code. However, all other code is validating fine.
+- I used the [W3C CSS Validator tool](https://jigsaw.w3.org/css-validator/#validate_by_input) to validate my CSS code.
+- I used the [Pep8 Online tool](http://pep8online.com/) to validate my Python syntax.
+
+## ** 7.2 Pagination Test (manual)
+
+1. Test the pagination page by page and verify that the same amoutn of recipes are always appearing on the same page number
+2. Test the pagination next / previous page functionality and verify that the same recipes are always appearing on the same page number
+3. Test the 'next' button to check if disapear on last page, and 'prevoius' button if disapear on first page.
