@@ -73,3 +73,30 @@ The website will:
 4. When the country dropdown is enabled, its selection will be changed to green to highlight the user's selection
 5. The website displays 6 recipes per page and allows to view another recipes by clicking on 'Next' button
 
+## **3.7 OVERVIEW OF DATABASES **
+-   title: recipe title displayed on recipe list & details   
+-   category: allows filtering by category
+-   image: Image file name. Prefixed with /static/img/some_recipies to display on recipe list & details.<br/>
+    for recipies added by users, URL needs to be provided
+-   cooking_time: holds time for preperation
+-   serves: tells for how many people is recipe created
+-   author: hold the recipe owner
+-   ingredients: displayed on recipe details (list of items needed to create a dish)
+-   instructions: displayed on recipe details (list of steps needed to prepare dish)
+-   user_email: will be used to identify user when login
+
+# **4. TECHNOLOGIES USED**
+|------------------------------------------------------------------------------------------------------|
+|Technologies  Used           |Sourced From                                                            |
+|-----------------------------|------------------------------------------------------------------------|
+|HTML                         |[w3schools](https://www.w3schools.com/)                                 |
+|CSS                          |[w3schools](https://www.w3schools.com/)                                 |
+|Javascript                   |[developer mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript)                                                                        |
+|Jquery                       |[jQuery website](https://code.jquery.com/)                              |
+|Bootstrap                    |[Bootstrap website](https://getbootstrap.com/)                          |
+|Font Awesome                 |[Font Awesome website](https://fontawesome.com/)                        |
+|Google fonts                 |[Google fonts](https://fonts.google.com/)                               |
+|AutoPrefixer                 |[Autoprefixer website](https://autoprefixer.github.io/)                 |
+|Python                       |[Python docs](https://docs.python.org/3/library/stdtypes.html#range)    |
+|mongodb database             |[mongodb website](https://www.mongodb.com/)                             |
+|------------------------------------------------------------------------------------------------------|
