@@ -111,8 +111,6 @@ The website will:
     - The project uses **Font Awesome** for the various icons in my app.
 - [**Gitpod**](https://www.gitpod.io/)
     - I've used **Gitpod** as the development environment to write the code for my website.
-- [**Gitpod**](https://www.gitpod.io/)
-    - I've used **Gitpod** as the development environment to write the code for my website.   
 
 # **5. Mockups
 
@@ -147,3 +145,72 @@ it appeared in the desired way on different devices.
 1. Test the pagination page by page and verify that the same amoutn of recipes are always appearing on the same page number
 2. Test the pagination next / previous page functionality and verify that the same recipes are always appearing on the same page number
 3. Test the 'next' button to check if disapear on last page, and 'prevoius' button if disapear on first page.
+
+# 8. DEPLOYMENT
+
+## 8.1 DEPLOYING FROM GITHUB 
+
+1. Log onto Github
+2. Select the respository you want to deploy
+3. On the repository page, click on "Settings" and scroll down to "Github Pages"
+4. From the "Source" dropdown select "Master Branch" and click "Save"
+5. The message "Your site is ready to be published at https://username.github.io/Repository Name/" will 
+   appear under Github Pages
+
+## 8.2 CLONING FROM GITHUB 
+
+1. Follow this link to my [Project Repository on Github](https://github.com/tomciosegal/fitness_pot)
+2. On the repository page click "Clone or Download"
+3. In the Clone with HTTPs section, copy the clone URL for the repository.
+4. In your local IDE open Git Bash.
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type git clone, and then paste the URL you copied in Step 3 - 
+    "git clone https://kittymcdonagh.github.io/Third-Milestone-Project/"
+7. Press enter and your local clone will be created.
+ 
+
+## 8.3 DEPLOYING TO HEROKU 
+
+1. Type 'heroku ps:scale web=1' into bash terminal
+2. Create 'requirements.txt' (sudo pip3 freeze --local > requirements.txt)
+3. Create a 'Procfile' (echo web: python run.py > Procfile)
+4. Log onto Heroku.com
+5. Click on Create New App
+6. Enter App Name (global-irish-cafe)
+7. Click on Create App
+8. Go to the CLI and type "sudo snap install --classic heroku"
+9. Type "Heroku login --interactive"
+10. Go to Deploy (under your app on heroku.com) and under Create New Repository copy the command:
+11  "heroku git:remote -a global-irish-café"
+12. Copy this into the bash terminal
+13. Go to heroku website dashboard for your app and click Settings
+14. Copy the heroku git url (https://git.heroku.com/fitness-pot.git)
+15. In the bash terminal type "git remote add http://fitness-pot.herokuapp.com/"
+16. Type "git push -u heroku master"
+17. In the app dashboard, click Settings
+18. Click on Reveal Config Vars
+19. Enter "IP" in first key box. Enter "0.0.0.0" into corressponding value box. Click Add
+20. Enter "PORT" into 2nd key box, enter "5000" into corresponding value box. Click add.
+21. Enter "MONGO_URI" in key box, enter mongodb details in value box
+22. Enter "MONGO_URI" in key box, enter 
+   mongodb+srv://tomciosegal:cucharec7164@myfirstcluster-nbawd.mongodb.net/fitness_pot?retryWrites=true&w=majority
+22. Enter "SECRET" into the key box, enter the secret key into the value box.
+
+# **9. CREDITS**
+
+## **9.1 RECIPES & PHOTOGRAPHS**
+
+The photos and recipes have been copied from the following websites:
+- [Healthy Fitness Meals](https://healthyfitnessmeals.com/) - all recipes and meal images
+- [Pixabay](https://pixabay.com/) - deafault image if none added to recipe
+
+## **10. Acknowledgements
+
+- I received inspiration for the style of my project from [Healthy Kitchen](https://healthyfitnessmeals.com/)
+- Thanks to everybody on SLACK that help me when I was stuck and needed assistance. Thanks Tutors aswell. They help me to debug my Python code.
+- Big thanks to my mentor Ignatius Ukwuoma, for his feedback on my project's scope, design and so many useful information shared.
+- And finally thanks to my wife who gave me precious time so I can work on my project, shey is biggest support I can imagine.
+
+### Disclaimer
+
+This project is for educational purposes only.
