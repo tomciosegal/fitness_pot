@@ -79,9 +79,9 @@ def login():
         if request.form["password"] == login_user["password"]:
             session["username"] = request.form["username"]
             session["logged_in"] = True
-            flash("You are logged in as " + session["username"], "success")
+            flash("Welcome " + session["username"], "success")
             return redirect(url_for("index"))
-    return redirect(url_for("login"), code=400)
+    return redirect(url_for("index"))
 
 
 @app.route("/logout", methods=["GET"])
@@ -126,9 +126,12 @@ def myrecipies():
 def recipe_details():
     action = request.args.get("action")
     recipe = request.args.get("recipe")
+    categories = set(
+        [x.get("category") for x in mydb.dish.find() if x.get("category")]
+    )
 
     the_recipe = mongo.db.dish.find_one({"_id": ObjectId(recipe)})
-    print(the_recipe)
+    print("the_recipe : ", the_recipe)
     if action == "index":
         return render_template(
             "recipe_details.html",
@@ -144,6 +147,7 @@ def recipe_details():
             "addrecipe.html",
             recipe=the_recipe,
             text="Edit Recipe",
+            categories=categories,
             button_text="Update recipe",
             form_action="updaterecepie",
             should_show_background_image=False,
@@ -166,22 +170,22 @@ def createuser():
 
 @app.route("/createrecepie", methods=["POST"])
 def createrecepie():
+    print("request.form.get(ingredients) = ", request.form.get("ingredients"))
     (request.form.to_dict())
     is_valid = validate_recipe(request.form)
     newrecipe = {
-        "name": request.form.get("name"),
-        "user_name": session.get("username"),
+        "category": request.form.get("category"),
         "title": request.form.get("title"),
         "serves": request.form.get("serves"),
-        "mail": request.form.get("mail"),
         "image": request.form.get("image_url"),
-        "ingredients": request.form.get("ingredients"),
-        "instructions": request.form.get("instructions"),
+        "ingredients": list(request.form.get("ingredients").split("<br>")),
+        "instructions": list(request.form.get("instructions").split("<br>")),
+        "user_name": session.get("username"),
     }
 
     if DEBUG_LEVEL == "DEBUG":
         print("newrecipe = ", newrecipe)
-
+    print(request.form.to_dict())
     if is_valid:
         mycol.insert_one(newrecipe)
         return redirect(url_for("index"))

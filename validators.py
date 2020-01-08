@@ -1,15 +1,15 @@
 def validate_recipe(recipe):
     fields = [
-        "name",
-        "user_name",
+        "category",
         "title",
         "serves",
-        "mail",
+        "image_url",
         "ingredients",
         "instructions",
     ]
 
     for field in fields:
         if not recipe.get(field):
+            print("could not validate field = ",field)
             return False
     return True

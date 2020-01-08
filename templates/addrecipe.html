@@ -33,7 +33,7 @@
 
       <div class="row">
         <div class="select-field col s6">
-         <select id="category" name="category_name" class="form-control">
+         <select id="category" name="category" class="form-control">
                             <option disabled="" selected="">Choose Category</option>
                             {% for category in categories %}
                             <option value="{{category}}">{{category}}</option>
@@ -47,7 +47,7 @@
                     <label for="title">Name Dish</label>
             </div>
             <div class="input-field col s6">
-                <input name = "serves" id="serves" type="text" class="validate">
+                <input value="{{recipe.serves}}" name = "serves" id="serves" type="text" class="validate">
                     <label for="serves">How Many Serves</label>
             </div>
       </div>
@@ -55,7 +55,7 @@
           </div>
       <div class="row">
           <div class="input-field col s12">
-            <textarea name = "image_url"id="image_url" class="materialize-textarea" data-length="500"></textarea>
+            <textarea name = "image_url"id="image_url" class="materialize-textarea" data-length="500">{{recipe.image}}</textarea>
             <label for="image_url">Paste Your Image URL here</label>
           </div>
         </div>
