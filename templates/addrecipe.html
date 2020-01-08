@@ -2,10 +2,12 @@
 {% block content %}
 
 
-
-
-    <h1 class = "recipe-header">{{text}}</h1>
     
+    
+    <h1 class = "recipe-header">{{text}}</h1>
+    {% if message %}
+     <h3 class= "all_fields_message">{{message}}</h3>
+     {%endif%}
 
     <div class=class="row m-0 p-2 mt-3 mb-4">
     <div class="offset-2 col-8 email-form">
@@ -16,42 +18,21 @@
             </div>
             {% endif %}
         </div>
-       
-        
-        <!-- <div class="row no-gutters">
-            <form action="{{ url_for('index') }}" class="email-form-style col-12" method="GET">
-
-                <div class="row no-gutters">
-                    <div class="offset-1 col-7 ">
-                        <input id="my_email" name="my_email" type="email" value="{{recipe.user_email}}" class="form-control text-center" placeholder="To See Your Recipes Enter Your Email Address" required>
-                    </div>
-
-                    <div class="col-3 ml-5">
-                        <button class="ml-3 btn send-btn" type="submit" name="action">Get My Recipes</button>
-                    </div>
-
-                </div>
-            </form>
-        </div> -->
-        
+         
     </div>
 </div>
      {% if session.get('logged_in') %}
   <div>
   <div class="row">
-    <!-- <form class="col s12" action="{{ url_for('createrecepie') }}" method="POST"> -->
-    <form class="col s12" action="{{ url_for(form_action)}}" method="POST">
+    
+        <form class="col s12" action="{{ url_for(form_action)}}" method="POST">
     
 
         <input name = "recipe_id" id="recipe_id" type="hidden" value="{{recipe._id}}">
     
 
       <div class="row">
-        <!-- <div class="input-field col s6">
-          <input placeholder="Placeholder" id="name" name="name" type="text" class="validate">
-          <label for="name">Name</label>
-        </div> -->
-         <div class="select-field col s6">
+        <div class="select-field col s6">
          <select id="category" name="category_name" class="form-control">
                             <option disabled="" selected="">Choose Category</option>
                             {% for category in categories %}
@@ -71,27 +52,7 @@
             </div>
       </div>
       
-      <div class="row">
-          
-        
-        <!-- <div class="input-field col s6">
-          <select id="category" name="category" class="form-control">
-          <option disabled selected>Choose Category</option>
-          {% for cat in categories %}
-          <option value="{{cat.category}}">{{cat.category}}</option>
-          {% endfor %}
-          </select>
-        </div> -->
-        <!-- <select id="category" name="category_name" class="form-control">
-                            <option disabled selected>Choose Category</option>
-                            {% for cat in categories %}
-                            <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-                            {% endfor %}
-                        </select> -->
-					
-				
-			</div>
-    </div>
+          </div>
       <div class="row">
           <div class="input-field col s12">
             <textarea name = "image_url"id="image_url" class="materialize-textarea" data-length="500"></textarea>
