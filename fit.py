@@ -118,7 +118,6 @@ def addrecipe():
 
 @app.route("/myrecipies")
 def myrecipies():
-    # mydb.dish.find({"user_id": user_id})
     return render_template("myrecipies.html")
 
 
@@ -178,8 +177,8 @@ def createrecepie():
         "title": request.form.get("title"),
         "serves": request.form.get("serves"),
         "image": request.form.get("image_url"),
-        "ingredients": list(request.form.get("ingredients").split("<br>")),
-        "instructions": list(request.form.get("instructions").split("<br>")),
+        "ingredients": list(request.form.get("ingredients").split("\n")),
+        "instructions": list(request.form.get("instructions").split("\n")),
         "user_name": session.get("username"),
     }
 
@@ -224,9 +223,8 @@ def updaterecepie():
         }
     }
 
-    # mycol.update_one({"_id": recipe_id}, newrecipe)
     mycol.update_one({"_id": ObjectId(recipe_id)}, newrecipe)
-    # mycol.insert_one(newrecipe)
+    
 
     return redirect(url_for("index"))
 
