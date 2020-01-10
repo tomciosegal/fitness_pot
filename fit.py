@@ -102,16 +102,14 @@ def home_page1():
 
 @app.route("/addrecipe")
 def addrecipe():
-    categories = set(
-        [x.get("category") for x in mydb.dish.find() if x.get("category")]
-    )
+    
     return render_template(
         "addrecipe.html",
         recipe=None,
         text="Add Recipe",
         button_text="Add new recipe",
         form_action="createrecepie",
-        categories=categories,
+        categories="categories",
         should_show_background_image=False,
     )
 
@@ -121,6 +119,60 @@ def myrecipies():
     return render_template("myrecipies.html")
 
 
+@app.route("/recipe/delete/<recipe_id>",  methods=['GET', 'POST'])
+def delete_recipe(recipe_id):
+    #mycol.delete_one({"_id": ObjectId(recipe_id)})
+    
+    #return redirect(url_for("index"))
+    return "i will delete {}".format(recipe_id)
+    
+
+@app.route("/recipe/edit/<recipe_id>", methods=['GET', 'POST'])
+def edit_recipe(recipe_id):
+
+    print("request.method = ", request.method)
+
+
+    if request.method == 'POST':
+        updated_recipe = {
+            "$set": {
+                "name": request.form.get("name"),
+                "user_name": session.get("username"),
+                "title": request.form.get("title"),
+                "serves": request.form.get("serves"),
+                "mail": request.form.get("mail"),
+                "image": request.form.get("image_url"),
+                "ingredients": list(request.form.get("ingredients").split("\n")),
+                "instructions": list(request.form.get("instructions").split("\n")),
+            }
+        }
+        mycol.update_one({"_id": ObjectId(recipe_id)}, updated_recipe)
+        return redirect(url_for('view_recipe', recipe_id=recipe_id))
+    elif request.method == 'GET':
+        the_recipe = mongo.db.dish.find_one({"_id": ObjectId(recipe_id)})
+        return render_template(
+            "edit_recipe.html",
+            recipe=the_recipe,
+            text="Edit Recipe",
+            categories=get_all_categories_from_db(),
+            button_text="Updte recipe",
+            form_action="updaterecepie",
+            should_show_background_image=False,
+    )
+
+
+@app.route("/recipe/view/<recipe_id>")
+def view_recipe(recipe_id):
+    recipe = mongo.db.dish.find_one({"_id": ObjectId(recipe_id)})
+    return render_template(
+            "recipe_details.html",
+            recipe=recipe,
+            should_show_background_image=False,
+        )
+
+
+
+    
 @app.route("/recipe_details")
 def recipe_details():
     action = request.args.get("action")
@@ -151,9 +203,7 @@ def recipe_details():
             form_action="updaterecepie",
             should_show_background_image=False,
         )
-    elif action == "delete":
-        mycol.delete_one({"_id": ObjectId(recipe)})
-        return redirect(url_for("index"))
+
 
 
 @app.route("/create_user", methods=["POST"])
@@ -233,8 +283,15 @@ def parse_array(input_array):
     out = ""
     for v in input_array:
         out = out + v + "\n"
-
     return out
+
+
+def get_all_categories_from_db():
+    categories = set(
+        [x.get("category") for x in mydb.dish.find() if x.get("category")]
+    )
+    return categories
+
 
 
 if __name__ == "__main__":

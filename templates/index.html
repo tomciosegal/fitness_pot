@@ -22,7 +22,7 @@
     </div>
 
 	<h1 style="
-    margin-top: 40px;
+    margin-top: 60px;
     margin-left: 30px;
     margin-bottom: 50px;
     text-align: center;
@@ -38,7 +38,7 @@
 				{% for recipe in recipes %}
 				<div class="col-md-4">
 					<div class="card mb-4 shadow-sm">
-						<p class=" bd-placeholder-img card-img-top" width="100%" height="225" alt="{{ recipe.title }}">
+						<p class=" bd-placeholder-img card-img-top" alt="{{ recipe.title }}">
 						</p>
 						{% if recipe.image %}
                             {% if "http" in recipe.image  %}
@@ -52,7 +52,7 @@
 						<div class="card-body">
 							<h4 class="card-text d-flex justify-content-center">{{recipe.title}}</h4>
 							<div class="d-flex justify-content-between align-items-center">
-								<div class="card-body">
+								<div class="card-body-details">
 									
 									<p class="card-text"><i class="fab fa-bandcamp"></i> {{recipe.category}}</p>
 									<p class="card-text"><i class="fas fa-clock"></i> {{recipe.cooking_time}} min</p>
@@ -61,12 +61,10 @@
 							</div>
 						</div>
 						<div class="card-footer card-footer1 d-flex justify-content-center">
-                         <!-- <a class="nav-link js-scroll-trigger" href="{{ url_for('recipe_details' , recipe=recipe._id,action='index') }}">Show Recipie</a> -->
+                         
 							 <button type="button" class="btn btn-outline-dark details-button"
-								onclick="window.location.href='{{ url_for( 'recipe_details' , recipe=recipe._id,action='index' ) }}';">
+								onclick="window.location.href='{{ url_for( 'view_recipe', recipe_id=recipe._id)}}';">
                                 View Recipe</button> 
-                                
-                                
 						</div>
 					</div>
                     

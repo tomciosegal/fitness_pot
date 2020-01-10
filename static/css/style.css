@@ -83,6 +83,17 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
     right: -200px;
 }
 
+.card-body-details{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    }
+
+.card-body{
+    width: 100%;
+
+}
+
 /*RECIPE DETAILS CONTAINER*/
 .card-footer1{
     background-color: #e2f0e2;
@@ -109,7 +120,7 @@ header.masthead .intro-text {
     top: 40px;
     
 }
-/*RECIPE*/
+/*---------------------------RECIPE---------------------------------------------*/
 .recipe-img {
     margin-top: 25px;
 }
@@ -181,11 +192,19 @@ button:hover {
   background-color: rgba(0,0,0,0.3);
 }
 
-Extra styles for the cancel button */
  .cancelbtn {
   padding: 14px 20px;
   background-color: #f44336;
-} */
+} 
+
+
+.img-dish-detail{
+    max-width: 60%;
+}
+
+.card-img-top{
+    width: 100% ;
+    }
 
 Float cancel and signup buttons and add an equal width */
  .cancelbtn, .signupbtn {
@@ -219,7 +238,7 @@ Float cancel and signup buttons and add an equal width */
 
 .browse-category{
     position: relative;
-    top: 25px;
+    top: 70px;
 }
 /*-------------------------------------------------------------------------------------------------------*/
 
@@ -283,6 +302,11 @@ hr {
     text-align: center;
     background-color: #c0e0c0
 }
+
+.card-footer{
+    width: 100%;
+}
+
 
 @media screen and (min-width: 576px){
     .recipe-info{
