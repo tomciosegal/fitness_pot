@@ -13,7 +13,7 @@
                 </li>
                 {% for category in categories %}
                     <li>
-                        <a class = ""href = "{{url_for('index', category = category)}}">{{category}}</a>
+                        <a class = "" href = "{{url_for('index', category = category)}}">{{category.capitalize()}}</a>
                     </li>
                 {% endfor %}
                 </div>
@@ -38,16 +38,16 @@
 				{% for recipe in recipes %}
 				<div class="col-md-4">
 					<div class="card mb-4 shadow-sm">
-						<p class=" bd-placeholder-img card-img-top" alt="{{ recipe.title }}">
+						<p class=" bd-placeholder-img card-img-top">
 						</p>
 						{% if recipe.image %}
                             {% if "http" in recipe.image  %}
-                                <img src="{{recipe.image}}" class="img-fluid img-thumbnail"/>
+                                <img src="{{recipe.image}}" class="img-fluid img-thumbnail" alt= "recipe.image"/>
                             {% else %}    
-						        <img src="/static/img/some_recipies/{{recipe.image}}" class="img-fluid img-thumbnail"/>
+						        <img src="/static/img/some_recipies/{{recipe.image}}" class="img-fluid img-thumbnail" alt= recipe.image/>
                             {% endif %}
                         {% else %}
-						<img src="/static/img/some_recipies/dumbell.jpg.jpg" class="img-fluid img-thumbnail"/>
+						<img src="/static/img/some_recipies/dumbell.jpg.jpg" class="img-fluid img-thumbnail" alt ="dumbell"/>
                          {% endif %}
 						<div class="card-body">
 							<h4 class="card-text d-flex justify-content-center">{{recipe.title}}</h4>

@@ -11,6 +11,6 @@ def paginate(data, count, page=None):
     start = int(count * (page - 1))
     stop = int(count * page)
     data = [x for x in data]
-    if stop > len(data):
+    if stop >= len(data):
         next = False
     return data[start:stop], page, next

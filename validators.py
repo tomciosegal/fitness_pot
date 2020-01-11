@@ -10,6 +10,6 @@ def validate_recipe(recipe):
 
     for field in fields:
         if not recipe.get(field):
-            print("could not validate field = ",field)
+            print("could not validate field = ", field)
             return False
     return True

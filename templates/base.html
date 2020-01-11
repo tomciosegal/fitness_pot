@@ -61,8 +61,8 @@
 	
         </ul>
         {% else %}
-                    <button class="register-button "onclick="document.getElementById('id02').style.display='block'; document.getElementById('id01').style.display='none'" style="width:auto;" id="login_btn">Login</button>
-                    <button class="register-button "onclick="document.getElementById('id01').style.display='block'; document.getElementById('id02').style.display='none'" style="width:auto;" id="signup_btn">Sign Up</button>
+                    <button class="register-button" onclick="document.getElementById('id02').style.display='block'; document.getElementById('id01').style.display='none'" style="width:auto;" id="login_btn">Login</button>
+                    <button class="register-button" onclick="document.getElementById('id01').style.display='block'; document.getElementById('id02').style.display='none'" style="width:auto;" id="signup_btn">Sign Up</button>
                 {% endif %}
       </div>
     </div>
@@ -154,12 +154,13 @@
       <p>Please fill in this form to create an account.</p>
       <hr>      
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
-      <label for="email"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" required>
+      <input type="text" id = "email" placeholder="Enter Email" name="email" required>
+
+      <label for="username" ><b>Username</b></label>
+      <input type="text" id= "username" placeholder="Enter Username" name="username" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
+      <input type="password" id= "psw" placeholder="Enter Password" name="password" required>
 
       <div class="clearfix">
         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
@@ -176,13 +177,13 @@
   <form class="modal-content animate" action="{{ url_for('login') }}" method="POST">
   <span class="close" title="Close Modal" id="close_login">×</span>
       <div class="container">
-      <label for="username"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" required>
+      <label for="username-login"><b>Username</b></label>
+      <input type="text" id= "username-login" placeholder="Enter Username" name="username" required>
 
-      <label for="password"><b>Password</b></label>
+      <label for ="password"><b>Password</b></label>
       <input type="password" id="password" placeholder="Enter Password" name="password" required>
         
-      <button type="submit">Login</button>
+      <button type="submit" class= "login-btn">Login</button>
       
     </div>
 
