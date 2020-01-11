@@ -104,7 +104,7 @@ def addrecipe():
         text="Add Recipe",
         button_text="Add new recipe",
         form_action="createrecepie",
-        categories="categories",
+        categories=get_all_categories_from_db(),
         should_show_background_image=False,
     )
 
@@ -130,38 +130,42 @@ def myrecipies():
 
 @app.route("/recipe/delete/<recipe_id>", methods=["GET", "POST"])
 def delete_recipe(recipe_id):
-    # mycol.delete_one({"_id": ObjectId(recipe_id)})
-
-    # return redirect(url_for("index"))
-    return "i will delete {}".format(recipe_id)
-
+    mycol.delete_one({"_id": ObjectId(recipe_id)})
+    return redirect(url_for("index"))
 
 @app.route("/recipe/edit/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
-
-    print("request.method = ", request.method)
-
     if request.method == "POST":
         updated_recipe = {
             "$set": {
-                "name": request.form.get("name"),
-                "user_name": session.get("username"),
+                "category":request.form.get("category"),
                 "title": request.form.get("title"),
                 "serves": request.form.get("serves"),
-                "mail": request.form.get("mail"),
                 "image": request.form.get("image_url"),
+                "name": request.form.get("name"),
                 "ingredients": list(
                     request.form.get("ingredients").split("\n")
                 ),
                 "instructions": list(
                     request.form.get("instructions").split("\n")
                 ),
+                "user_name": session.get("username"),
             }
         }
         mycol.update_one({"_id": ObjectId(recipe_id)}, updated_recipe)
         return redirect(url_for("view_recipe", recipe_id=recipe_id))
     elif request.method == "GET":
         the_recipe = mydb.dish.find_one({"_id": ObjectId(recipe_id)})
+        print("dupa ", the_recipe)
+
+        the_recipe["parsed_ingredients"] = ""
+        for ing in the_recipe["ingredients"]:
+             the_recipe["parsed_ingredients"] = the_recipe["parsed_ingredients"] + ing
+
+        the_recipe["parsed_instructions"] = ""
+        for ins in the_recipe["instructions"]:
+            the_recipe["parsed_instructions"] = the_recipe["parsed_instructions"] + ins    
+
         return render_template(
             "edit_recipe.html",
             recipe=the_recipe,
@@ -183,36 +187,36 @@ def view_recipe(recipe_id):
     )
 
 
-@app.route("/recipe_details")
-def recipe_details():
-    action = request.args.get("action")
-    recipe = request.args.get("recipe")
-    categories = set(
-        [x.get("category") for x in mydb.dish.find() if x.get("category")]
-    )
+# @app.route("/recipe_details")
+# def recipe_details():
+#     action = request.args.get("action")
+#     recipe = request.args.get("recipe")
+#     categories = set(
+#         [x.get("category") for x in mydb.dish.find() if x.get("category")]
+#     )
 
-    the_recipe = mydb.dish.find_one({"_id": ObjectId(recipe)})
-    print("the_recipe : ", the_recipe)
-    if action == "index":
-        return render_template(
-            "recipe_details.html",
-            recipe=the_recipe,
-            should_show_background_image=False,
-        )
-    elif action == "edit":
-        print("the_recipe", the_recipe)
-        the_recipe["parsed_ingredients"] = parse_array(
-            the_recipe.get("ingredients")
-        )
-        return render_template(
-            "addrecipe.html",
-            recipe=the_recipe,
-            text="Edit Recipe",
-            categories=categories,
-            button_text="Update recipe",
-            form_action="updaterecepie",
-            should_show_background_image=False,
-        )
+#     the_recipe = mydb.dish.find_one({"_id": ObjectId(recipe)})
+
+#     if action == "index":
+#         return render_template(
+#             "recipe_details.html",
+#             recipe=the_recipe,
+#             should_show_background_image=False,
+#         )
+#     elif action == "edit":
+#         print("the_recipe", the_recipe)
+#         the_recipe["parsed_ingredients"] = parse_array(
+#             the_recipe.get("ingredients")
+#         )
+#         return render_template(
+#             "addrecipe.html",
+#             recipe=the_recipe,
+#             text="Edit Recipe",
+#             categories=categories,
+#             button_text="Update recipe",
+#             form_action="updaterecepie",
+#             should_show_background_image=False,
+#         )
 
 
 @app.route("/create_user", methods=["POST"])
@@ -241,9 +245,6 @@ def createrecepie():
         "user_name": session.get("username"),
     }
 
-    if DEBUG_LEVEL == "DEBUG":
-        print("newrecipe = ", newrecipe)
-    print(request.form.to_dict())
     if is_valid:
         mycol.insert_one(newrecipe)
         return redirect(url_for("index"))
