@@ -256,7 +256,7 @@ button:hover {
     position: relative;
     top: 25px;
     background-color: #5bb65f;
-    left: 60%;
+    left: 50%;
 }
 
 .select-category:hover{
@@ -293,6 +293,7 @@ button:hover {
   width: 80%; /*Could be more or less, depending on screen size*/
 } 
 
+
 /* Style the horizontal ruler */
 hr {
   border: 1px solid #f1f1f1;
@@ -328,19 +329,26 @@ hr {
 .card-footer{
     width: 100%;
 }
-
+@media screen and (min-width:325px){
+    .modal-content{
+        padding-top: 200px;
+            }
+    header.masthead{
+        height: 560px;
+}
+}
 
 @media screen and (min-width: 576px){
     .recipe-info{
     position: relative;
-    top: -90px;
-    right: -59px;
-}
+    top: 10px;
+    }
 .recipe-img {
     position: relative;
     top: 60px;
     left: 25px;
 }
+
 }
 
 @media screen and (min-width: 768px){
@@ -354,6 +362,14 @@ hr {
     top: 0px;
     left: 0px;
 }
+#detail-container{
+        padding-top: 115px;
+}
+
+/* .container{
+    padding-top: 70px;
+    max-width: 720px;
+} */
 }
 
 @media screen and (min-width: 992px){

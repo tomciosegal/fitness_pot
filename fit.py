@@ -26,9 +26,9 @@ login = LoginManager(app)
 
 myclient = pymongo.MongoClient(os.environ.get("MONGO_CLUSTER"))
 mydb = myclient["fitness_pot"]
-mycol = mydb["dish"]
-userscol = mydb["users"]
-x = mydb.list_collection_names()
+dish_col = mydb["dish"]
+users_col = mydb["users"]
+collection_names = mydb.list_collection_names()
 
 
 DEBUG_LEVEL = "DEBUG"
@@ -52,16 +52,12 @@ def index():
     recipes, page, next = paginate(
         recipes, pagination, request.args.get("page")
     )
-    categories = set(
-        [x.get("category") for x in mydb.dish.find() if x.get("category")]
-    )
-
     return render_template(
         "index.html",
         page=page,
         recipes=recipes,
         next=next,
-        categories=categories,
+        categories=get_all_categories_from_db(),
         selected_category=selected_category,
         should_show_background_image=True,
     )
@@ -89,19 +85,6 @@ def logout():
     else:
         return render_template("index.html")
 
-@app.route("/addrecipe")
-def addrecipe():
-
-    return render_template(
-        "addrecipe.html",
-        recipe=None,
-        text="Add Recipe",
-        button_text="Add new recipe",
-        form_action="createrecepie",
-        categories=get_all_categories_from_db(),
-        should_show_background_image=False,
-    )
-
 
 @app.route("/myrecipies")
 def myrecipies():
@@ -124,7 +107,13 @@ def myrecipies():
 
 @app.route("/recipe/delete/<recipe_id>", methods=["GET", "POST"])
 def delete_recipe(recipe_id):
-    mycol.delete_one({"_id": ObjectId(recipe_id)})
+    try:
+        dish_col.delete_one({"_id": ObjectId(recipe_id)})
+        flash("You have deleted recipe")
+    except:
+        flash("Deleting not succesfull")
+              
+        
     return redirect(url_for("index"))
 
 @app.route("/recipe/edit/<recipe_id>", methods=["GET", "POST"])
@@ -146,7 +135,12 @@ def edit_recipe(recipe_id):
                 "user_name": session.get("username"),
             }
         }
-        mycol.update_one({"_id": ObjectId(recipe_id)}, updated_recipe)
+        try:
+            dish_col.update_one({"_id": ObjectId(recipe_id)}, updated_recipe)
+            flash("Your recipe was updated")
+        except:
+            flash("Recipe not updated,try again")
+
         return redirect(url_for("view_recipe", recipe_id=recipe_id))
     elif request.method == "GET":
         the_recipe = mydb.dish.find_one({"_id": ObjectId(recipe_id)})
@@ -181,81 +175,100 @@ def view_recipe(recipe_id):
 
 @app.route("/create_user", methods=["POST"])
 def createuser():
-    flash("Congratulation! You have created account")
-
     newuser = {
         "username": request.form.get("username"),
         "password": request.form.get("password"),
         "email": request.form.get("email"),
     }
-    userscol.insert_one(newuser)
+
+    try:
+        ret =  users_col.insert_one(newuser)
+        flash("Congratulation " + request.form.get("username") + "! You have created account" )
+    
+    except:
+        flash("Sorry, there was some problem, user " + request.form.get("username") + " was not added to database" )
+        print (e)
+    
     return redirect(url_for("index"))
 
-
-@app.route("/createrecepie", methods=["POST"])
-def createrecepie():
-    print("request.form.get(ingredients) = ", request.form.get("ingredients"))
-    (request.form.to_dict())
-    is_valid = validate_recipe(request.form)
-    newrecipe = {
-        "category": request.form.get("category"),
-        "title": request.form.get("title"),
-        "serves": request.form.get("serves"),
-        "image": request.form.get("image_url"),
-        "ingredients": list(request.form.get("ingredients").split("\n")),
-        "instructions": list(request.form.get("instructions").split("\n")),
-        "user_name": session.get("username"),
-    }
-
-    if is_valid:
-        mycol.insert_one(newrecipe)
-        return redirect(url_for("index"))
-    categories = set(
-        [x.get("category") for x in mydb.dish.find() if x.get("category")]
-    )
-    return render_template(
-        "addrecipe.html",
-        recipe=None,
-        text="Add Recipe",
-        button_text="Add new recipe",
-        form_action="createrecepie",
-        categories=categories,
-        should_show_background_image=False,
-        message="All fields are mandatory",
-    )
-
-
-@app.route("/updaterecepie", methods=["POST"])
-def updaterecepie():
-    recipe_id = request.form.get("recipe_id")
-    newrecipe = {
-        "$set": {
-            "name": request.form.get("name"),
-            "user_name": session.get("username"),
+@app.route("/recipe/new", methods=["GET", "POST"])
+def create_recipe():
+    if request.method == "POST":
+        #actions for POST
+        #here are adding recipe to DB
+        (request.form.to_dict())
+        is_valid = validate_recipe(request.form)
+        newrecipe = {
+            "category": request.form.get("category"),
             "title": request.form.get("title"),
             "serves": request.form.get("serves"),
-            "mail": request.form.get("mail"),
             "image": request.form.get("image_url"),
-            "ingredients": request.form.get("ingredients"),
-            "instructions": request.form.get("instructions"),
+            "ingredients": list(request.form.get("ingredients").split("\n")),
+            "instructions": list(request.form.get("instructions").split("\n")),
+            "user_name": session.get("username"),
         }
-    }
 
-    mycol.update_one({"_id": ObjectId(recipe_id)}, newrecipe)
+        if is_valid:
+            try:
+                dish_col.insert_one(newrecipe)
+                flash("Dish was added")
+            except:
+                flash("Dish was not added")
+        else:
+            flash("Input values are wrong")
+    
+        return redirect(url_for("index"))
+    elif request.method == "GET":
+        #actions for GET
+        #here we show form in HTML
+        return render_template(
+            "addrecipe.html",
+            categories=get_all_categories_from_db(),
+            should_show_background_image=False,
+        )
 
-    return redirect(url_for("index"))
+
+    # return render_template(
+    #     "addrecipe.html",
+    #     recipe=None,
+    #     text="Add Recipe",
+    #     button_text="Add new recipe",
+    #     form_action="createrecepie",
+    #     categories=get_all_categories_from_db(),
+    #     should_show_background_image=False,
+    #     message="All fields are mandatory",
+    # )
 
 
-def parse_array(input_array):
-    out = ""
-    for v in input_array:
-        out = out + v + "\n"
-    return out
+# @app.route("/updaterecepie/<recipe_id>", methods=["POST"])
+# def updaterecepie(recipe_id):
+#     newrecipe = {
+#         "$set": {
+#             "name": request.form.get("name"),
+#             "user_name": session.get("username"),
+#             "title": request.form.get("title"),
+#             "serves": request.form.get("serves"),
+#             "mail": request.form.get("mail"),
+#             "image": request.form.get("image_url"),
+#             "ingredients": request.form.get("ingredients"),
+#             "instructions": request.form.get("instructions"),
+#         }
+#     }
 
+#     dish_col.update_one({"_id": ObjectId(recipe_id)}, newrecipe)
+
+#     return redirect(url_for("index"))
+
+
+# def parse_array(input_array):
+#     out = ""
+#     for v in input_array:
+#         out = out + v + "\n"
+#     return out
 
 def get_all_categories_from_db():
     categories = set(
-        [x.get("category") for x in mydb.dish.find() if x.get("category")]
+        [collection_names.get("category") for collection_names in mydb.dish.find() if collection_names.get("category")]
     )
     return categories
 

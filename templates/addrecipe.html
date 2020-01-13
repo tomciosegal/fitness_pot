@@ -4,7 +4,7 @@
 
     
     
-    <h1 class = "recipe-header">{{text}}</h1>
+    <h1 class = "recipe-header">Add Recipe</h1>
     {% if message %}
      <h3 class= "all_fields_message">{{message}}</h3>
      {%endif%}
@@ -25,15 +25,12 @@
   
   <div class="row add-recipe-form">
     
-        <form class="col s12" action="{{ url_for(form_action)}}" method="POST">
-    
-
-        <input name = "recipe_id" id="recipe_id" type="hidden" value="{{recipe._id}}">
+        <form class="col s12" action="{{ url_for('create_recipe')}}" method="POST">
     
     <div class="row">
         <div class="select-field col s6">
-         <select id="category" name="category" class="form-control choose-category">
-                            <option disabled="" selected="">Choose Category</option>
+         <select id="category" name="category" class="form-control choose-category" required>
+                            <option disabled="" selected="" value="">Choose Category</option>
                             {% for category in categories %}
                             <option value="{{category}}">{{category}}</option>
                             {% endfor %}
@@ -42,11 +39,11 @@
     </div>
         <div class="row">
             <div class="input-field col s6">
-                <input value="{{recipe.title}}" name="title" id="title" type="text" class="validate" required>
+                <input name="title" id="title" type="text" class="validate" required>
                     <label for="title">Name Dish</label>
             </div>
             <div class="input-field col s6">
-                <input value="{{recipe.serves}}" name = "serves" id="serves" type="text" class="validate" required>
+                <input name = "serves" id="serves" type="text" class="validate" required>
                     <label for="serves">How Many Serves</label>
             </div>
       </div>
@@ -54,25 +51,25 @@
           
       <div class="row">
           <div class="input-field col s12">
-            <textarea name = "image_url" id="image_url" class="materialize-textarea" data-length="500" required>{{recipe.image}}</textarea>
+            <textarea name = "image_url" id="image_url" class="materialize-textarea" data-length="500" required></textarea>
             <label for="image_url">Paste Your Image URL here</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <textarea name ="ingredients" id="ingredients" class="materialize-textarea" data-length="700" required>{{recipe.parsed_ingredients}}</textarea>
+            <textarea name ="ingredients" id="ingredients" class="materialize-textarea" data-length="700" required></textarea>
             <label for="ingredients">Ingredients (one per line)</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <textarea name ="instructions" id="instructions" class="materialize-textarea" data-length="500">{{recipe.instructions}}</textarea>
+            <textarea name ="instructions" id="instructions" class="materialize-textarea" data-length="500"></textarea>
             <label for="instructions">Instructions (one per line)</label>
           </div>
         </div>
         {% if session["username"] %}
-        <button class="btn waves-effect waves-light action-button" type="submit" name="action">{{button_text}}</button>
+        <button class="btn waves-effect waves-light action-button" type="submit" name="action">Add new recipe</button>
             {% endif %}
     </form>
   </div>
