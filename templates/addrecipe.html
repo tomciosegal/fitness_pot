@@ -23,24 +23,23 @@
 </div>
      {% if session.get('logged_in') %}
   
-  <div class="row">
+  <div class="row add-recipe-form">
     
         <form class="col s12" action="{{ url_for(form_action)}}" method="POST">
     
 
         <input name = "recipe_id" id="recipe_id" type="hidden" value="{{recipe._id}}">
     
-
-      <div class="row">
+    <div class="row">
         <div class="select-field col s6">
-         <select id="category" name="category" class="form-control">
+         <select id="category" name="category" class="form-control choose-category">
                             <option disabled="" selected="">Choose Category</option>
                             {% for category in categories %}
                             <option value="{{category}}">{{category}}</option>
                             {% endfor %}
          </select>
         </div>
-     </div>
+    </div>
         <div class="row">
             <div class="input-field col s6">
                 <input value="{{recipe.title}}" name="title" id="title" type="text" class="validate" required>
@@ -73,9 +72,8 @@
           </div>
         </div>
         {% if session["username"] %}
-        <button class="btn waves-effect waves-light" type="submit" name="action">{{button_text}}</button>
-            <i class="material-icons right">send</i>
-    {% endif %}
+        <button class="btn waves-effect waves-light action-button" type="submit" name="action">{{button_text}}</button>
+            {% endif %}
     </form>
   </div>
 

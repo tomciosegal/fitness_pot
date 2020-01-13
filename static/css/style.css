@@ -23,15 +23,6 @@ background-color: #4fa955;
     color:#76c180
 }
 
-.register-button{
-    background-color: #c0e0c0 ;
-    margin-right: -4px;   
-}
-
-.register-button :hover{
-    background-color: rgba(0,0,0,0.1);
-}
-
 .nav-link{
     padding: 5px .5rem !important;
     background-color: #c0e0c0
@@ -83,6 +74,7 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
     right: -200px;
 }
 
+/* ---------------------img card body styiling------------------------*/
 .card-body-details{
     width: 100%;
     display: flex;
@@ -123,6 +115,11 @@ header.masthead .intro-text {
 /*---------------------------RECIPE---------------------------------------------*/
 .recipe-img {
     margin-top: 25px;
+}
+
+.add-recipe-form{
+    background-color: whitesmoke;
+    border-radius: 1.25rem;
 }
 
 /* add recipies form css styled */
@@ -175,7 +172,7 @@ input[type=text]:focus, input[type=password]:focus {
   outline: none;
 }
 
-/* Set a style for all buttons */
+/* ---------------------buttons------------------------- */
 button {
   background-color: #4CAF50;
   color: white;
@@ -188,8 +185,28 @@ button {
 
 }
 
+.action-button{
+    background-color: #48a14c;
+}
+
+.action-button:hover{
+    background-color: #c0e0c0;
+}
+.choose-category{
+    background-color: #5aaa5d;
+    width: 20%;
+}
 button:hover {
   background-color: rgba(0,0,0,0.3);
+}
+
+.register-button{
+    background-color: #c0e0c0 ;
+    margin-right: -4px;   
+}
+
+.register-button :hover{
+    background-color: rgba(0,0,0,0.1);
 }
 
  .cancelbtn {
@@ -301,10 +318,7 @@ hr {
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
-@media screen and (min-width: 300px) {
- 
-}
- 
+
   .footer {
     padding: 5px 0px;
     text-align: center;

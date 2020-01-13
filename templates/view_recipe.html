@@ -8,9 +8,9 @@
 				<div class="col-md-6 bg-img">
 					{% if recipe.image %}
                             {% if "http" in recipe.image  %}
-                                <img src="{{recipe.image}}" class="img-fluid img-thumbnail"/>
+                                <img src="{{recipe.image}}" class="img-fluid img-thumbnail img-dish-detail"/>
                             {% else %}    
-						        <img src="/static/img/some_recipies/{{recipe.image}}" class="img-fluid img-thumbnail"/>
+						        <img src="/static/img/some_recipies/{{recipe.image}}" class="img-fluid img-thumbnail img-dish-detail    "/>
                             {% endif %}
                         {% else %}
 						<img src="/static/img/some_recipies/dumbell.jpg.jpg" class="img-fluid img-thumbnail"/>

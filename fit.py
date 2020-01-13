@@ -74,9 +74,9 @@ def login():
         if request.form["password"] == login_user["password"]:
             session["username"] = request.form["username"]
             session["logged_in"] = True
-            flash("Welcome " + session["username"], "success")
+            flash("Welcome " + session["username"])
             return redirect(url_for("index"))
-    return redirect(url_for("index"))
+    
 
 
 @app.route("/logout", methods=["GET"])
@@ -88,12 +88,6 @@ def logout():
         return redirect(url_for("index"))
     else:
         return render_template("index.html")
-
-
-def home_page1():
-    pprint.pprint(mycol.find_one({"category": "dinner"}))
-    return mycol.find_one()
-
 
 @app.route("/addrecipe")
 def addrecipe():
@@ -156,8 +150,7 @@ def edit_recipe(recipe_id):
         return redirect(url_for("view_recipe", recipe_id=recipe_id))
     elif request.method == "GET":
         the_recipe = mydb.dish.find_one({"_id": ObjectId(recipe_id)})
-        print("dupa ", the_recipe)
-
+        
         the_recipe["parsed_ingredients"] = ""
         for ing in the_recipe["ingredients"]:
              the_recipe["parsed_ingredients"] = the_recipe["parsed_ingredients"] + ing
@@ -186,48 +179,17 @@ def view_recipe(recipe_id):
         should_show_background_image=False,
     )
 
-
-# @app.route("/recipe_details")
-# def recipe_details():
-#     action = request.args.get("action")
-#     recipe = request.args.get("recipe")
-#     categories = set(
-#         [x.get("category") for x in mydb.dish.find() if x.get("category")]
-#     )
-
-#     the_recipe = mydb.dish.find_one({"_id": ObjectId(recipe)})
-
-#     if action == "index":
-#         return render_template(
-#             "recipe_details.html",
-#             recipe=the_recipe,
-#             should_show_background_image=False,
-#         )
-#     elif action == "edit":
-#         print("the_recipe", the_recipe)
-#         the_recipe["parsed_ingredients"] = parse_array(
-#             the_recipe.get("ingredients")
-#         )
-#         return render_template(
-#             "addrecipe.html",
-#             recipe=the_recipe,
-#             text="Edit Recipe",
-#             categories=categories,
-#             button_text="Update recipe",
-#             form_action="updaterecepie",
-#             should_show_background_image=False,
-#         )
-
-
 @app.route("/create_user", methods=["POST"])
 def createuser():
+    flash("Congratulation! You have created account")
+
     newuser = {
         "username": request.form.get("username"),
         "password": request.form.get("password"),
         "email": request.form.get("email"),
     }
     userscol.insert_one(newuser)
-    return "SUCCESS"
+    return redirect(url_for("index"))
 
 
 @app.route("/createrecepie", methods=["POST"])
@@ -265,11 +227,7 @@ def createrecepie():
 
 @app.route("/updaterecepie", methods=["POST"])
 def updaterecepie():
-    print("i am in updaterecepie")
     recipe_id = request.form.get("recipe_id")
-    print(request.form)
-    print("id", recipe_id)
-
     newrecipe = {
         "$set": {
             "name": request.form.get("name"),

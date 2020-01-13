@@ -132,6 +132,7 @@ I used Google Chrome's Development tools to constantly test each change that I<b
 made to my project and to ensure that it appeared in the desired way on different screen sizes. <br/>
 I also tested my app on different screen sizes (mobile, tablet and desktop) to ensure <br/>
 it appeared in the desired way on different devices.
+I also wrote automated test for validators.py file. Test is located in tests.py file.
 
 ## **7.1 Code Validation
 
