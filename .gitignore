@@ -1,5 +1,3 @@
 .env
-.theia
-
-__pycache__/
-.theia/
+/__pycache__
+/.theia
