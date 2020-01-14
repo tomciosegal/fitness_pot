@@ -137,15 +137,15 @@ for the Fitness Pot can be found in separate folder called wireframes.
 
 # **7. TESTING**
 
-I used Google Chrome's Development tools to constantly test each change that I<br/> 
+- I used Google Chrome's Development tools to constantly test each change that I<br/> 
 made to my project and to ensure that it appeared in the desired way on different screen sizes. <br/>
-I also tested my app on different screen sizes (mobile, tablet and desktop) to ensure <br/>
+- I also tested my app on different screen sizes (mobile, tablet and desktop) to ensure <br/>
 it appeared in the desired way on different devices.
-I also wrote automated test for validators.py file. Test is located in tests.py file.
-4. I continually  tested code in the [W3C HTML Validator](https://validator.w3.org/)
-in order to get rid of errors. 
-5.Vocabulary and grammar was checked on [Spell checker](http://www.reverso.net/spell-checker/english-spelling-grammar/)
-7. - [Am I Responsive](http://ami.responsivedesign.is/#) - Online tool was used to display the project on various devices;
+- I also wrote automated test for validators.py file. Test is located in tests.py file.
+- I continually  tested code in the [W3C HTML Validator](https://validator.w3.org/)
+    in order to get rid of errors. 
+- Vocabulary and grammar was checked on [Spell checker](http://www.reverso.net/spell-checker/english-spelling-grammar/)
+- [Am I Responsive](http://ami.responsivedesign.is/#) - Online tool was used to display the project on various devices;
 Image availible in wireframes.
 
 
@@ -189,7 +189,7 @@ ERRORS:
 4. In your local IDE open Git Bash.
 5. Change the current working directory to the location where you want the cloned directory to be made.
 6. Type git clone, and then paste the URL you copied in Step 3 - 
-    "git clone https://kittymcdonagh.github.io/Third-Milestone-Project/"
+    "git clone https://github.com/tomciosegal/fitness_pot/"
 7. Press enter and your local clone will be created.
  
 
@@ -200,7 +200,7 @@ ERRORS:
 3. Create a 'Procfile' (echo web: python run.py > Procfile)
 4. Log onto Heroku.com
 5. Click on Create New App
-6. Enter App Name (global-irish-cafe)
+6. Enter App Name (fitness-pot)
 7. Click on Create App
 8. Go to the CLI and type "sudo snap install --classic heroku"
 9. Type "Heroku login --interactive"
@@ -227,11 +227,6 @@ ERRORS:
 The photos and recipes have been copied from the following websites:
 - [Healthy Fitness Meals](https://healthyfitnessmeals.com/) - all recipes and meal images
 - [Pixabay](https://pixabay.com/) - deafault image if none added to recipe
-
-## **9.2 Content
-
-Git Branch - https://www.atlassian.com/git/tutorials/using-branches 
-
 
 ## **10. Acknowledgements
 
