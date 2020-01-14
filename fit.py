@@ -38,9 +38,10 @@ DEBUG_LEVEL = "DEBUG"
 # HOME PAGE - Display home page featured recipes with image and introductory text only
 # =========
 
+
 @app.route("/", methods=["GET", "POST"])
 def index():
-    #this will allow to display 6 recipes per page. function located in utilities.py file
+    # this will allow to display 6 recipes per page. function located in utilities.py file
     pagination = 6
     recipes = mydb.dish.find()
 
@@ -66,9 +67,11 @@ def index():
         selected_category=selected_category,
         should_show_background_image=True,
     )
+
+
 # =================================
 # LOGIN MODAL- function will allow create new account
-#==================================
+# ==================================
 @app.route("/create_user", methods=["POST"])
 def createuser():
     newuser = {
@@ -78,17 +81,27 @@ def createuser():
     }
 
     try:
-        ret =  users_col.insert_one(newuser)
-        flash("Congratulation " + request.form.get("username") + "! You have created account" )
-    #try and except to notify user in case there was some troubleshooting
+        ret = users_col.insert_one(newuser)
+        flash(
+            "Congratulation "
+            + request.form.get("username")
+            + "! You have created account"
+        )
+    # try and except to notify user in case there was some troubleshooting
     except:
-        flash("Sorry, there was some problem, user " + request.form.get("username") + " was not added to database" )
-        print (e)
-    
+        flash(
+            "Sorry, there was some problem, user "
+            + request.form.get("username")
+            + " was not added to database"
+        )
+        print(e)
+
     return redirect(url_for("index"))
+
+
 # =================================
 # LOGIN MODAL- function will allow login to created account
-#==================================
+# ==================================
 @app.route("/login", methods=["POST", "GET"])
 def login():
     login_user = mydb.users.find_one({"username": request.form["username"]})
@@ -98,11 +111,11 @@ def login():
             session["logged_in"] = True
             flash("Welcome " + session["username"])
             return redirect(url_for("index"))
-    
+
 
 # =================================
 # LOGOUT MODAL- function will allow logout from account
-#==================================
+# ==================================
 @app.route("/logout", methods=["GET"])
 def logout():
     if session.get("logged_in"):
@@ -112,6 +125,7 @@ def logout():
         return redirect(url_for("index"))
     else:
         return render_template("index.html")
+
 
 # =============================
 # DISPLAY 'MY RECIPES' SCREEN - Allowing user in input a or view, edit, delete only users recipes
@@ -142,16 +156,16 @@ def delete_recipe(recipe_id):
         flash("You have deleted recipe")
     except:
         flash("Deleting not succesfull")
-              
-        
+
     return redirect(url_for("index"))
+
 
 @app.route("/recipe/edit/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     if request.method == "POST":
         updated_recipe = {
             "$set": {
-                "category":request.form.get("category"),
+                "category": request.form.get("category"),
                 "title": request.form.get("title"),
                 "serves": request.form.get("serves"),
                 "image": request.form.get("image_url"),
@@ -174,14 +188,18 @@ def edit_recipe(recipe_id):
         return redirect(url_for("view_recipe", recipe_id=recipe_id))
     elif request.method == "GET":
         the_recipe = mydb.dish.find_one({"_id": ObjectId(recipe_id)})
-        
+
         the_recipe["parsed_ingredients"] = ""
         for ing in the_recipe["ingredients"]:
-             the_recipe["parsed_ingredients"] = the_recipe["parsed_ingredients"] + ing
+            the_recipe["parsed_ingredients"] = (
+                the_recipe["parsed_ingredients"] + ing
+            )
 
         the_recipe["parsed_instructions"] = ""
         for ins in the_recipe["instructions"]:
-            the_recipe["parsed_instructions"] = the_recipe["parsed_instructions"] + ins    
+            the_recipe["parsed_instructions"] = (
+                the_recipe["parsed_instructions"] + ins
+            )
 
         return render_template(
             "edit_recipe.html",
@@ -203,11 +221,12 @@ def view_recipe(recipe_id):
         should_show_background_image=False,
     )
 
+
 @app.route("/recipe/new", methods=["GET", "POST"])
 def create_recipe():
     if request.method == "POST":
-        #actions for POST
-        #here are adding recipe to DB
+        # actions for POST
+        # here are adding recipe to DB
         (request.form.to_dict())
         is_valid = validate_recipe(request.form)
         newrecipe = {
@@ -228,17 +247,16 @@ def create_recipe():
                 flash("Dish was not added")
         else:
             flash("Input values are wrong")
-    
+
         return redirect(url_for("index"))
     elif request.method == "GET":
-        #actions for GET
-        #here we show form in HTML
+        # actions for GET
+        # here we show form in HTML
         return render_template(
             "addrecipe.html",
             categories=get_all_categories_from_db(),
             should_show_background_image=False,
         )
-
 
     # return render_template(
     #     "addrecipe.html",
@@ -278,9 +296,14 @@ def create_recipe():
 #         out = out + v + "\n"
 #     return out
 
+
 def get_all_categories_from_db():
     categories = set(
-        [collection_names.get("category") for collection_names in mydb.dish.find() if collection_names.get("category")]
+        [
+            collection_names.get("category")
+            for collection_names in mydb.dish.find()
+            if collection_names.get("category")
+        ]
     )
     return categories
 

@@ -1,5 +1,4 @@
-
-#function for pagination
+# function for pagination
 def paginate(data, count, page=None):
     next = True
     if page is None:

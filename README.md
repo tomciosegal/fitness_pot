@@ -51,7 +51,7 @@ The website will:
          - The home page designed to hold six recipes per page. In order to check more recipes you click next or prevoius button
          - When loggen in user will see all recipes and also 'My Recipe' button will apear.
                 
-   [ii]  The Recipes List page:
+   [ii]  The Recipes On HomePage:
    
          - Displays a card for each recipe in the cooking time, how many serves, category
          - The recipe card shows an image, meal category, preperation time, how many serves and a short introduction to the recipe
@@ -63,8 +63,12 @@ The website will:
             recipes, it allows them to edit or delete the recipe. Only users recipes can be edited or deleted.
             Buttons visible on users recipes only.
 
-   [iv]  The 'My Recipes' page located in navbar, allows the user to view, edit, delete their existing recipes.
-         Button only visible when logged in. 
+   [iiii]  The 'My Recipes' page located in navbar, allows the user to view, edit, delete their existing recipes.
+         Button only visible when logged in.
+   
+   [iiiii]  The edit recipe page where user can edit only own recipes.
+
+   [iv]     The add recipe page where user can add recipe, but only when logged in 
    
 
 2. The select category dropdown will allow user to browse recipes by categories(breakfast,dinner dessert, drinks, vegan)
@@ -72,8 +76,7 @@ The website will:
 3. The nav link selected by the user will change color to green, so that the user remembers which selection they have made
 4. When the country dropdown is enabled, its selection will be changed to green to highlight the user's selection
 5. The website displays 6 recipes per page and allows to view another recipes by clicking on 'Next' button
-6.[Wireframes](https://github.com/tomciosegal/fitness_pot/tree/master/wireframes) 
-for the dashboard can be found in separate folder of the repository.
+
 
 ## **3.7 OVERVIEW OF DATABASES **
 -   title: recipe title displayed on recipe list & details   
@@ -85,7 +88,8 @@ for the dashboard can be found in separate folder of the repository.
 -   author: hold the recipe owner
 -   ingredients: displayed on recipe details (list of items needed to create a dish)
 -   instructions: displayed on recipe details (list of steps needed to prepare dish)
--   user_email: will be used to identify user when login
+-   user_name: will be used to identify user when login
+-   description: short note about the dish visible on home page under recipe-image
 
 # **4. TECHNOLOGIES USED**
 
@@ -116,6 +120,9 @@ for the dashboard can be found in separate folder of the repository.
 
 # **5. Mockups
 
+[Wireframes](https://github.com/tomciosegal/fitness_pot/tree/master/wireframes) 
+for the Fitness Pot can be found in separate folder called wireframes.
+
 # **6. Version Control
 
 - [**Git**](https://git-scm.com/)
@@ -135,6 +142,16 @@ made to my project and to ensure that it appeared in the desired way on differen
 I also tested my app on different screen sizes (mobile, tablet and desktop) to ensure <br/>
 it appeared in the desired way on different devices.
 I also wrote automated test for validators.py file. Test is located in tests.py file.
+4. I continually  tested code in the [W3C HTML Validator](https://validator.w3.org/)
+in order to get rid of errors. 
+5.Vocabulary and grammar was checked on [Spell checker](http://www.reverso.net/spell-checker/english-spelling-grammar/)
+7. - [Am I Responsive](http://ami.responsivedesign.is/#) - Online tool was used to display the project on various devices;
+Image availible in wireframes.
+
+
+
+ERRORS:
+/favicon.ico:1 Failed to load resource: the server responded with a status of 404 ()- the only one that comes in console.
 
 ## **7.1 Code Validation
 
@@ -142,12 +159,16 @@ I also wrote automated test for validators.py file. Test is located in tests.py 
     - The W3C Validator tool doesn't recognise the Jinja templating, which has resulted in it showing a lot of errors in relation to the Jinja code. However, all other code is validating fine.
 - I used the [W3C CSS Validator tool](https://jigsaw.w3.org/css-validator/#validate_by_input) to validate my CSS code.
 - I used the [Pep8 Online tool](http://pep8online.com/) to validate my Python syntax.
+- I used CLI to sort all my imports by using comand "isort -rc ."
+- I used CLI to make sure line length is not going above 79 in one line by using comand "black --line-length=79"
+- I used CLI to check all the errors in the code by using comand "flake8"
 
 ## ** 7.2 Pagination Test (manual)
 
 1. Test the pagination page by page and verify that the same amoutn of recipes are always appearing on the same page number
 2. Test the pagination next / previous page functionality and verify that the same recipes are always appearing on the same page number
 3. Test the 'next' button to check if disapear on last page, and 'prevoius' button if disapear on first page.
+
 
 # 8. DEPLOYMENT
 
