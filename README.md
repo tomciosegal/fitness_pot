@@ -4,7 +4,7 @@
 ## **1.1 PURPOSE**
 The purpose of [Fitness Pot](https://fitness-pot.herokuapp.com/) is to host healthy recipes for people who want to
 who like to eat delicious and nutrition food. The primary target audience are people doing gym 
-and lead a healthy lifestyle, but after all i seems like there is a wast comunity looking for this sort of recipies.
+and lead a healthy lifestyle, but after all i seems like there is a wast community looking for this sort of recipes.
 
 ## **2.2 WEBSITE REQUIREMENTS**
 
@@ -12,7 +12,7 @@ and lead a healthy lifestyle, but after all i seems like there is a wast comunit
 
 The website will:
 
-1. Display recipes entered by users in 5 categgories.
+1. Display recipes entered by users in 5 categories.
 2. Recipes are divided into the following categories - Breakfast, Dinner, Drinks, Dessert,Vegan
 3. Display the recipe list category order
 4. Allow users to browse the site and filter by category,and user
@@ -25,17 +25,17 @@ The website will:
 4. Allow users to like / dislike recipes
 5. Allow users to give likes, share,tweet
 6. Allow visitor to browse by allergens
-7.Let user give comments about the dish under recipies
+7. Let user give comments about the dish under recipes
 
 ## **2.2.3 USER STORIES** ##
 -   New to the website i am looking for healthy meals
 -	As user, I would like to check out different recipes
 -	As viewer , I would like to browse recipes by different categories
 -	As user, I would like to add my recipes
--	I want to be able  to edit existing recipes on webpage
--	As user, I would like to delete existing receipes on webpage
--	New to the website i am looking to register on the webpage
--	As a user, I would like to login to the webpage
+-	I want to be able  to edit existing recipes on web page
+-	As user, I would like to delete existing recipes on web page
+-	New to the website i am looking to register on the web page
+-	As a user, I would like to login to the web page
 -	My goal was to create user friendly , easily accessible, data driven web application
 -   I enjoy healthy nutritious meals that are so important
 -   As new user I have many good healthy recipes I would like to share with people who would appreciate them.
@@ -48,13 +48,13 @@ The website will:
    [i]   It opens with a **Home** page which:
          - Gives an introduction to the site 
          - Gives user instructions what you can find the site
-         - The home page designed to hold six recipes per page. In order to check more recipes you click next or prevoius button
-         - When loggen in user will see all recipes and also 'My Recipe' button will apear.
+         - The home page designed to hold six recipes per page. In order to check more recipes you click next or previous  button
+         - When logged in user will see all recipes and also 'My Recipe' button will appear.
                 
-   [ii]  The Recipes On HomePage:
+   [ii]  The Recipes On Home Page:
    
          - Displays a card for each recipe in the cooking time, how many serves, category
-         - The recipe card shows an image, meal category, preperation time, how many serves and a short introduction to the recipe
+         - The recipe card shows an image, meal category, preparation time, how many serves and a short introduction to the recipe
          - Each recipe has a view recipe button that will bring the user to the recipe details
             
    [iii] The Recipes Details page:
@@ -82,8 +82,8 @@ The website will:
 -   title: recipe title displayed on recipe list & details   
 -   category: allows filtering by category
 -   image: Image file name. Prefixed with /static/img/some_recipies to display on recipe list & details.<br/>
-    for recipies added by users, URL needs to be provided
--   cooking_time: holds time for preperation
+    for recipes added by users, URL needs to be provided
+-   cooking_time: holds time for preparation
 -   serves: tells for how many people is recipe created
 -   author: hold the recipe owner
 -   ingredients: displayed on recipe details (list of items needed to create a dish)
@@ -111,8 +111,6 @@ The website will:
     - The project uses **Jinja** for templating with Flask in the HTML code. I used **Jinja** to simplify my HTML code, avoid repetition, and allow simpler linking of the back-end to the front-end.
 - [**MongoDB**](https://cloud.mongodb.com/)
     - The project uses **MongoDB** to store the database in the cloud. The information displayed in the front-end app is pulled from the database store.
-- [**Google Fonts**](https://fonts.google.com/)
-    - The project uses **Google Fonts** to style the text and suit my chosen theme. The brand logo uses the *_Dancing Script_* font and the rest of the site uses the *_Roboto_* font.
 - [**Font Awesome**](https://fontawesome.com/)
     - The project uses **Font Awesome** for the various icons in my app.
 - [**Gitpod**](https://www.gitpod.io/)
@@ -146,7 +144,7 @@ it appeared in the desired way on different devices.
     in order to get rid of errors. 
 - Vocabulary and grammar was checked on [Spell checker](http://www.reverso.net/spell-checker/english-spelling-grammar/)
 - [Am I Responsive](http://ami.responsivedesign.is/#) - Online tool was used to display the project on various devices;
-Image availible in wireframes.
+Image available  in wireframes.
 
 
 
@@ -159,15 +157,15 @@ ERRORS:
     - The W3C Validator tool doesn't recognise the Jinja templating, which has resulted in it showing a lot of errors in relation to the Jinja code. However, all other code is validating fine.
 - I used the [W3C CSS Validator tool](https://jigsaw.w3.org/css-validator/#validate_by_input) to validate my CSS code.
 - I used the [Pep8 Online tool](http://pep8online.com/) to validate my Python syntax.
-- I used CLI to sort all my imports by using comand "isort -rc ."
-- I used CLI to make sure line length is not going above 79 in one line by using comand "black --line-length=79"
-- I used CLI to check all the errors in the code by using comand "flake8"
+- I used CLI to sort all my imports by using command  "isort -rc ."
+- I used CLI to make sure line length is not going above 79 in one line by using command  "black --line-length=79"
+- I used CLI to check all the errors in the code by using command  "flake8"
 
 ## ** 7.2 Pagination Test (manual)
 
 1. Test the pagination page by page and verify that the same amoutn of recipes are always appearing on the same page number
 2. Test the pagination next / previous page functionality and verify that the same recipes are always appearing on the same page number
-3. Test the 'next' button to check if disapear on last page, and 'prevoius' button if disapear on first page.
+3. Test the 'next' button to check if disappear  on last page, and 'prevoius' button if disappear  on first page.
 
 
 # 8. DEPLOYMENT
@@ -233,7 +231,7 @@ The photos and recipes have been copied from the following websites:
 - I received inspiration for the style of my project from [Healthy Kitchen](https://healthyfitnessmeals.com/)
 - Thanks to everybody on SLACK that help me when I was stuck and needed assistance. Thanks Tutors aswell. They help me to debug my Python code.
 - Big thanks to my mentor Ignatius Ukwuoma, for his feedback on my project's scope, design and so many useful information shared.
-- And finally thanks to my wife who gave me precious time so I can work on my project, shey is biggest support I can imagine.
+- And finally thanks to my wife who gave me precious time so I can work on my project, she is biggest support I can imagine.
 
 ### Disclaimer
 
