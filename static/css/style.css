@@ -62,6 +62,10 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
     background-color: #22753ac7;
     opacity: 0.7;
 }
+
+.home-icon{
+    color: #4a9c51;
+}
 /*-------------------------------------------------------------------------------------------------------------*/
 /*prevoius and next buttons for pagination main page*/
 .next{
@@ -117,10 +121,7 @@ header.masthead .intro-text {
 
 
 /*---------------------------RECIPE---------------------------------------------*/
-.recipe-img {
-    margin-top: 25px;
-    max-height: 420px;
-}
+
 
 .add-recipe-form{
     background-color: whitesmoke;
@@ -197,10 +198,7 @@ button {
 .action-button:hover{
     background-color: #c0e0c0;
 }
-.choose-category{
-    background-color: #5aaa5d;
-    width: 20%;
-}
+
 button:hover {
   background-color: rgba(0,0,0,0.3);
 }
@@ -368,12 +366,17 @@ hr {
         padding-top: 200px;
             }
     header.masthead{
-        height: 560px;
+        height: 380px;
 }
-.recipe-header {
+    .recipe-header {
     text-align: center;
     padding-top: 70px;
     padding-bottom: 25px;
+}
+    .choose-category {
+    background-color: #5aaa5d;
+    width: 50%;
+}
 }
 
 @media screen and (min-width: 576px){
@@ -381,38 +384,37 @@ hr {
     position: relative;
     top: 10px;
     }
-.recipe-img {
-    position: relative;
-    top: 60px;
-    left: 25px;
-}
-
 }
 
 @media screen and (min-width: 768px){
-   .recipe-info{
+.recipe-info{
     position: relative;
     top: 50px;
     right: 50px;
    } 
-   .recipe-img {
+.recipe-img {
     position: relative;
     top: 0px;
     left: 0px;
 }
-#detail-container{
-        padding-top: 115px;
+.choose-category{
+    background-color: #5aaa5d;
+    width: 20%;
 }
 
-/* .container{
-    padding-top: 70px;
-    max-width: 720px;
-} */
+header.masthead{
+    height: 550px;;
+}
+
 }
 
 @media screen and (min-width: 992px){
-    .recipe-info{
+.recipe-info{
     position: relative;
     top: 100px;
+}
+.recipe-img {
+    margin-top: 25px;
+    max-height: 420px;
 }
 }
