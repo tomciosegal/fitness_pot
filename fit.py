@@ -20,10 +20,11 @@ from validators import validate_recipe
 load_dotenv()
 
 app = Flask(__name__)
+# Get secret key
 app.config["SECRET_KEY"] = "qwert"
 login = LoginManager(app)
 
-
+# Mongo Database for FITNESS POT
 myclient = pymongo.MongoClient(os.environ.get("MONGO_CLUSTER"))
 mydb = myclient["fitness_pot"]
 dish_col = mydb["dish"]
@@ -33,9 +34,13 @@ collection_names = mydb.list_collection_names()
 
 DEBUG_LEVEL = "DEBUG"
 
+# =========
+# HOME PAGE - Display home page featured recipes with image and introductory text only
+# =========
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    #this will allow to display 6 recipes per page. function located in utilities.py file
     pagination = 6
     recipes = mydb.dish.find()
 
@@ -61,8 +66,29 @@ def index():
         selected_category=selected_category,
         should_show_background_image=True,
     )
+# =================================
+# LOGIN MODAL- function will allow create new account
+#==================================
+@app.route("/create_user", methods=["POST"])
+def createuser():
+    newuser = {
+        "username": request.form.get("username"),
+        "password": request.form.get("password"),
+        "email": request.form.get("email"),
+    }
 
-
+    try:
+        ret =  users_col.insert_one(newuser)
+        flash("Congratulation " + request.form.get("username") + "! You have created account" )
+    #try and except to notify user in case there was some troubleshooting
+    except:
+        flash("Sorry, there was some problem, user " + request.form.get("username") + " was not added to database" )
+        print (e)
+    
+    return redirect(url_for("index"))
+# =================================
+# LOGIN MODAL- function will allow login to created account
+#==================================
 @app.route("/login", methods=["POST", "GET"])
 def login():
     login_user = mydb.users.find_one({"username": request.form["username"]})
@@ -74,7 +100,9 @@ def login():
             return redirect(url_for("index"))
     
 
-
+# =================================
+# LOGOUT MODAL- function will allow logout from account
+#==================================
 @app.route("/logout", methods=["GET"])
 def logout():
     if session.get("logged_in"):
@@ -85,7 +113,9 @@ def logout():
     else:
         return render_template("index.html")
 
-
+# =============================
+# DISPLAY 'MY RECIPES' SCREEN - Allowing user in input a or view, edit, delete only users recipes
+# =============================
 @app.route("/myrecipies")
 def myrecipies():
     pagination = 6
@@ -172,24 +202,6 @@ def view_recipe(recipe_id):
         recipe=recipe,
         should_show_background_image=False,
     )
-
-@app.route("/create_user", methods=["POST"])
-def createuser():
-    newuser = {
-        "username": request.form.get("username"),
-        "password": request.form.get("password"),
-        "email": request.form.get("email"),
-    }
-
-    try:
-        ret =  users_col.insert_one(newuser)
-        flash("Congratulation " + request.form.get("username") + "! You have created account" )
-    
-    except:
-        flash("Sorry, there was some problem, user " + request.form.get("username") + " was not added to database" )
-        print (e)
-    
-    return redirect(url_for("index"))
 
 @app.route("/recipe/new", methods=["GET", "POST"])
 def create_recipe():

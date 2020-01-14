@@ -112,9 +112,14 @@ header.masthead .intro-text {
     top: 40px;
     
 }
+
+
+
+
 /*---------------------------RECIPE---------------------------------------------*/
 .recipe-img {
     margin-top: 25px;
+    max-height: 420px;
 }
 
 .add-recipe-form{
@@ -219,11 +224,40 @@ button:hover {
     max-width: 60%;
 }
 
+.card-index{
+    height: 800px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-description{
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.15;
+}
+
 .card-img-top{
     width: 100% ;
     }
 
                     /*----------------MODAL BUTTONS----------------------*/
+
+.logout-btn{
+    display:inline-block;
+    height: 68px;
+}
 
  .login-btn{
     padding: 14px 20px;
@@ -275,7 +309,7 @@ button:hover {
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 9999; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -336,6 +370,10 @@ hr {
     header.masthead{
         height: 560px;
 }
+.recipe-header {
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 25px;
 }
 
 @media screen and (min-width: 576px){
