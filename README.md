@@ -43,7 +43,7 @@ The website will:
 # **3. FEATURES**
 ## **3.1 FITNESS POT**
 
-1. The website consists of 4 pages:
+1. The website consists of 6 pages:
 
    [i]   It opens with a **Home** page which:
          - Gives an introduction to the site 
@@ -53,7 +53,7 @@ The website will:
                 
    [ii]  The Recipes List page:
    
-         - Displays a card for each recipe in the country / category, sorted by country / category
+         - Displays a card for each recipe in the cooking time, how many serves, category
          - The recipe card shows an image, meal category, preperation time, how many serves and a short introduction to the recipe
          - Each recipe has a view recipe button that will bring the user to the recipe details
             
@@ -63,7 +63,7 @@ The website will:
             recipes, it allows them to edit or delete the recipe. Only users recipes can be edited or deleted.
             Buttons visible on users recipes only.
 
-   [iv]  The 'My Recipes' page located in navbar, allows the user to view, their existing recipes.
+   [iv]  The 'My Recipes' page located in navbar, allows the user to view, edit, delete their existing recipes.
          Button only visible when logged in. 
    
 
@@ -72,6 +72,8 @@ The website will:
 3. The nav link selected by the user will change color to green, so that the user remembers which selection they have made
 4. When the country dropdown is enabled, its selection will be changed to green to highlight the user's selection
 5. The website displays 6 recipes per page and allows to view another recipes by clicking on 'Next' button
+6.[Wireframes](https://github.com/tomciosegal/fitness_pot/tree/master/wireframes) 
+for the dashboard can be found in separate folder of the repository.
 
 ## **3.7 OVERVIEW OF DATABASES **
 -   title: recipe title displayed on recipe list & details   
