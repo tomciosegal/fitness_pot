@@ -36,9 +36,9 @@
                             {% endfor %}
          </select>
         </div>
-        <div class="col-md-6">
-            <input name = "cooking_time" id="cooking_time" type="number" class="validate" required>
-                <label for="cooking_time">Cooking Time</label>
+        <div class="col-md-6 input-field col s6">
+            <input name = "cooking_time" id="cooking_time" type="number" class="validate" min="1" max="180"required>
+                <label for="cooking_time">Cooking Time In Minutes</label>
         </div>
     </div>
         <div class="row">
@@ -47,7 +47,7 @@
                     <label for="title">Name Dish</label>
             </div>
             <div class="input-field col s6">
-                <input name = "serves" id="serves" type="number" class="validate" required>
+                <input name = "serves" id="serves" type="number" class="validate" min="1" max="12"required>
                     <label for="serves">How Many Serves</label>
             </div>
       </div>

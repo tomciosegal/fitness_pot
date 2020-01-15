@@ -123,7 +123,7 @@ def login():
             flash("Welcome " + session["username"])
             return redirect(url_for("index"))
         else:
-            flash("Please check your crudentials")
+            flash("Please check your credentials")
     else:
         flash("Please create account to login")
     return redirect(url_for("index"))
