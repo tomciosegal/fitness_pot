@@ -3,7 +3,7 @@
 <h1>My Recipies</h1>
 	<div class="album py-5 bg-light">
 		<div class="container">
-
+            {% if recipes %}
 			<div class="row">
 				{% for recipe in recipes %}
 				<div class="col-md-4">
@@ -42,6 +42,10 @@
                 
 				{% endfor %}
 			</div>
+            {% else %}
+                You don't have any recipes,
+                 <a href="{{ url_for( 'create_recipe') }}"> Create one here</a>
+            {% endif %}
 		</div>
 	</div>
     <div class="row">

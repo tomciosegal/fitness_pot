@@ -1,5 +1,5 @@
 import os
-import pprint
+import re
 
 import pymongo
 from bson.objectid import ObjectId
@@ -35,13 +35,16 @@ collection_names = mydb.list_collection_names()
 DEBUG_LEVEL = "DEBUG"
 
 # =========
-# HOME PAGE - Display home page featured recipes with image and introductory text only
+# HOME PAGE - Display home page featured recipes with
+# image and introductory text only
 # =========
 
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # this will allow to display 6 recipes per page. function located in utilities.py file
+    print(mydb.dish.find_one({"category": "Choose Category"}))
+    # this will allow to display 6 recipes per page. function located in
+    # utilities.py file
     pagination = 6
     recipes = mydb.dish.find()
 
@@ -70,31 +73,39 @@ def index():
 
 
 # =================================
-# LOGIN MODAL- function will allow create new account
+# CREATEUSER MODAL- function will allow create new account
 # ==================================
 @app.route("/create_user", methods=["POST"])
 def createuser():
+    regex = "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  # noqa: W605
+    if not re.search(regex, request.form.get("email")):
+        flash("invalid email")
+        return redirect(url_for("index"))
+
     newuser = {
         "username": request.form.get("username"),
         "password": request.form.get("password"),
         "email": request.form.get("email"),
     }
+    user = mydb.users.find_one({"username": request.form["username"]})
+    if user:
+        flash("Username already exists")
+    else:
 
-    try:
-        ret = users_col.insert_one(newuser)
-        flash(
-            "Congratulation "
-            + request.form.get("username")
-            + "! You have created account"
-        )
-    # try and except to notify user in case there was some troubleshooting
-    except:
-        flash(
-            "Sorry, there was some problem, user "
-            + request.form.get("username")
-            + " was not added to database"
-        )
-        print(e)
+        try:
+            ret = users_col.insert_one(newuser)
+            flash(
+                "Congratulation "
+                + request.form.get("username")
+                + "! You have created account"
+            )
+        # try and except to notify user in case there was some troubleshooting
+        except Exception:
+            flash(
+                "Sorry, there was some problem, user "
+                + request.form.get("username")
+                + " was not added to database"
+            )
 
     return redirect(url_for("index"))
 
@@ -111,6 +122,11 @@ def login():
             session["logged_in"] = True
             flash("Welcome " + session["username"])
             return redirect(url_for("index"))
+        else:
+            flash("Please check you crudentials")
+    else:
+        flash("Please create account to login")
+    return redirect(url_for("index"))
 
 
 # =================================
@@ -128,7 +144,8 @@ def logout():
 
 
 # =============================
-# DISPLAY 'MY RECIPES' SCREEN - Allowing user in input a or view, edit, delete only users recipes
+# DISPLAY 'MY RECIPES' SCREEN - Allowing user in input a or view, edit
+# delete only users recipes
 # =============================
 @app.route("/myrecipies")
 def myrecipies():
@@ -154,7 +171,7 @@ def delete_recipe(recipe_id):
     try:
         dish_col.delete_one({"_id": ObjectId(recipe_id)})
         flash("You have deleted recipe")
-    except:
+    except Exception:
         flash("Deleting not succesfull")
 
     return redirect(url_for("index"))
@@ -182,7 +199,7 @@ def edit_recipe(recipe_id):
         try:
             dish_col.update_one({"_id": ObjectId(recipe_id)}, updated_recipe)
             flash("Your recipe was updated")
-        except:
+        except Exception:
             flash("Recipe not updated,try again")
 
         return redirect(url_for("view_recipe", recipe_id=recipe_id))
@@ -243,7 +260,7 @@ def create_recipe():
             try:
                 dish_col.insert_one(newrecipe)
                 flash("Dish was added")
-            except:
+            except Exception:
                 flash("Dish was not added")
         else:
             flash("Input values are wrong")
@@ -257,44 +274,6 @@ def create_recipe():
             categories=get_all_categories_from_db(),
             should_show_background_image=False,
         )
-
-    # return render_template(
-    #     "addrecipe.html",
-    #     recipe=None,
-    #     text="Add Recipe",
-    #     button_text="Add new recipe",
-    #     form_action="createrecepie",
-    #     categories=get_all_categories_from_db(),
-    #     should_show_background_image=False,
-    #     message="All fields are mandatory",
-    # )
-
-
-# @app.route("/updaterecepie/<recipe_id>", methods=["POST"])
-# def updaterecepie(recipe_id):
-#     newrecipe = {
-#         "$set": {
-#             "name": request.form.get("name"),
-#             "user_name": session.get("username"),
-#             "title": request.form.get("title"),
-#             "serves": request.form.get("serves"),
-#             "mail": request.form.get("mail"),
-#             "image": request.form.get("image_url"),
-#             "ingredients": request.form.get("ingredients"),
-#             "instructions": request.form.get("instructions"),
-#         }
-#     }
-
-#     dish_col.update_one({"_id": ObjectId(recipe_id)}, newrecipe)
-
-#     return redirect(url_for("index"))
-
-
-# def parse_array(input_array):
-#     out = ""
-#     for v in input_array:
-#         out = out + v + "\n"
-#     return out
 
 
 def get_all_categories_from_db():
