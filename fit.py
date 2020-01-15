@@ -93,7 +93,7 @@ def createuser():
     else:
 
         try:
-            ret = users_col.insert_one(newuser)
+            users_col.insert_one(newuser)
             flash(
                 "Congratulation "
                 + request.form.get("username")
@@ -248,6 +248,7 @@ def create_recipe():
         is_valid = validate_recipe(request.form)
         newrecipe = {
             "category": request.form.get("category"),
+            "cooking_time": request.form.get("cooking_time"),
             "title": request.form.get("title"),
             "serves": request.form.get("serves"),
             "image": request.form.get("image_url"),
@@ -291,5 +292,5 @@ if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),
         port=int(os.environ.get("PORT", "8080")),
-        debug=False,
+        debug=True,
     )

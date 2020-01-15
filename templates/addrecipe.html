@@ -36,6 +36,10 @@
                             {% endfor %}
          </select>
         </div>
+        <div class="col-md-6">
+            <input name = "cooking_time" id="cooking_time" type="number" class="validate" required>
+                <label for="cooking_time">Cooking Time</label>
+        </div>
     </div>
         <div class="row">
             <div class="input-field col s6">
@@ -43,7 +47,7 @@
                     <label for="title">Name Dish</label>
             </div>
             <div class="input-field col s6">
-                <input name = "serves" id="serves" type="text" class="validate" required>
+                <input name = "serves" id="serves" type="number" class="validate" required>
                     <label for="serves">How Many Serves</label>
             </div>
       </div>
@@ -51,7 +55,8 @@
           
       <div class="row">
           <div class="input-field col s12">
-            <textarea name = "image_url" id="image_url" class="materialize-textarea" data-length="500" required></textarea>
+          <input name = "image_url" id="image_url" type="url" class="validate" required> 
+            
             <label for="image_url">Paste Your Image URL here</label>
           </div>
         </div>

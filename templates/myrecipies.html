@@ -10,6 +10,7 @@
 					<div class="card mb-4 shadow-sm">
 						<p class=" bd-placeholder-img card-img-top" {{ recipe.title }}>
 						</p>
+                        
 						{% if recipe.image %}
                             {% if "http" in recipe.image  %}
                                 <img src="{{recipe.image}}" class="img-fluid img-thumbnail" alt= "recipe.image"/>
@@ -17,7 +18,7 @@
 						        <img src="/static/img/some_recipies/{{recipe.image}}" class="img-fluid img-thumbnail" alt= recipe.image/>
                             {% endif %}
                         {% else %}
-						<img src="/static/img/some_recipies/dumbell.jpg.jpg" class="img-fluid img-thumbnail" alt ="dumbell"/>
+						    <img src="/static/img/some_recipies/dumbell.jpg" class="img-fluid img-thumbnail" alt ="dumbell"/>
                          {% endif %}
 						<div class="card-body">
 							<h4 class="card-text d-flex justify-content-center">{{recipe.title}}</h4>
