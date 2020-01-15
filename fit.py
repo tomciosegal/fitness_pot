@@ -123,7 +123,7 @@ def login():
             flash("Welcome " + session["username"])
             return redirect(url_for("index"))
         else:
-            flash("Please check you crudentials")
+            flash("Please check your crudentials")
     else:
         flash("Please create account to login")
     return redirect(url_for("index"))
@@ -259,7 +259,7 @@ def create_recipe():
         if is_valid:
             try:
                 dish_col.insert_one(newrecipe)
-                flash("Dish was added")
+                flash("Recipe added")
             except Exception:
                 flash("Dish was not added")
         else:
@@ -291,5 +291,5 @@ if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),
         port=int(os.environ.get("PORT", "8080")),
-        debug=True,
+        debug=False,
     )

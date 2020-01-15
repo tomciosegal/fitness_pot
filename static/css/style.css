@@ -203,15 +203,6 @@ button:hover {
   background-color: rgba(0,0,0,0.3);
 }
 
-.register-button{
-    background-color: #c0e0c0 ;
-    margin-right: -4px;   
-}
-
-.register-button :hover{
-    background-color: rgba(0,0,0,0.1);
-}
-
  .cancelbtn {
   padding: 14px 20px;
   background-color: #f44336;
@@ -330,9 +321,12 @@ hr {
 
 
 /*LOGIN FLASH IN NAVBAR*/
-.login-flash{
+.login-flash {
     padding-top: 40px;
-    color: green;
+    color: red;
+    font-weight: 600;
+    font-size: 21px;
+    text-align: center;
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
@@ -346,6 +340,10 @@ hr {
 .card-footer{
     width: 100%;
 }
+
+
+/*----------------------------MEDIA QUERRY------------------------*/
+
 @media screen and (min-width:325px){
     .modal-content{
         padding-top: 200px;
@@ -362,6 +360,10 @@ hr {
     background-color: #5aaa5d;
     width: 50%;
 }
+
+.register-button {
+    background-color: #1e6b1e;
+    margin-right: -4px
 }
 
 @media screen and (min-width: 576px){
@@ -428,5 +430,14 @@ header.masthead{
     background-clip: border-box;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
+}
+
+.register-button{
+    background-color: #1e6b1e;
+    margin-right: -4px;   
+}
+
+.register-button :hover{
+    background-color: rgba(0,0,0,0.1);
 }
 }
