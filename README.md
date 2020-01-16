@@ -74,9 +74,6 @@ The website will:
 2. The select category dropdown will allow user to browse recipes by categories(breakfast,dinner dessert, drinks, vegan)
     In that dropdown you can display 'All recipes' at all time.
 3. The nav link selected by the user will change color to green, so that the user remembers which selection they have made
-4. When the country dropdown is enabled, its selection will be changed to green to highlight the user's selection
-5. The website displays 6 recipes per page and allows to view another recipes by clicking on 'Next' button
-
 
 ## **3.7 OVERVIEW OF DATABASES **
 -   title: recipe title displayed on recipe list & details   
