@@ -184,7 +184,7 @@ ERRORS:
 
 ## 8.2 DEPLOYING TO HEROKU 
 
-# This project was deplyed to HEROKU where the [Fitness Pot](https://fitness-pot.herokuapp.com/) live site is hosted.
+### This project was deplyed to HEROKU where the [Fitness Pot](https://fitness-pot.herokuapp.com/) live site is hosted.
 
 1. Type 'heroku ps:scale web=1' into bash terminal
 2. Create 'requirements.txt' (sudo pip3 freeze --local > requirements.txt)
@@ -196,7 +196,7 @@ ERRORS:
 8. Go to the CLI and type "sudo snap install --classic heroku"
 9. Type "Heroku login --interactive"
 10. Go to Deploy (under your app on heroku.com) and under Create New Repository copy the command:
-11  "heroku git:remote -a global-irish-café"
+11  "heroku git:remote -a global-fitness_pot"
 12. Copy this into the bash terminal
 13. Go to heroku website dashboard for your app and click Settings
 14. Copy the heroku git url (https://git.heroku.com/fitness-pot.git)
@@ -206,11 +206,7 @@ ERRORS:
 18. Click on Reveal Config Vars
 19. Enter "IP" in first key box. Enter "0.0.0.0" into corressponding value box. Click Add
 20. Enter "PORT" into 2nd key box, enter "5000" into corresponding value box. Click add.
-21. Enter "MONGO_URI" in key box, enter mongodb details in value box
-22. Enter "MONGO_URI" in key box, enter 
-   mongodb+srv://tomciosegal:cucharec7164@myfirstcluster-nbawd.mongodb.net/fitness_pot?retryWrites=true&w=majority
-22. Enter "SECRET" into the key box, enter the secret key into the value box.
-23. 
+
 
 # **9. CREDITS**
 
