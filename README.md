@@ -203,6 +203,8 @@ ERRORS:
 18. Click on Reveal Config Vars
 19. Enter "IP" in first key box. Enter "0.0.0.0" into corressponding value box. Click Add
 20. Enter "PORT" into 2nd key box, enter "5000" into corresponding value box. Click add.
+21. Enter "MONGO_URI" in key box, enter mongodb details in value box
+22. Enter "MONGO_URI" in key box, "enter  your MONGO_URI"
 
 
 # **9. CREDITS**

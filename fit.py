@@ -257,6 +257,7 @@ def create_recipe():
             "ingredients": list(request.form.get("ingredients").split("\n")),
             "instructions": list(request.form.get("instructions").split("\n")),
             "user_name": session.get("username"),
+            "description": request.form.get("description"),
         }
 
         if is_valid:
