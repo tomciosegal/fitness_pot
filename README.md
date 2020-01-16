@@ -170,16 +170,7 @@ ERRORS:
 
 # 8. DEPLOYMENT
 
-## 8.1 DEPLOYING FROM GITHUB 
-
-1. Log onto Github
-2. Select the respository you want to deploy
-3. On the repository page, click on "Settings" and scroll down to "Github Pages"
-4. From the "Source" dropdown select "Master Branch" and click "Save"
-5. The message "Your site is ready to be published at https://username.github.io/Repository Name/" will 
-   appear under Github Pages
-
-## 8.2 CLONING FROM GITHUB 
+## 8.1 CLONING FROM GITHUB 
 
 1. Follow this link to my [Project Repository on Github](https://github.com/tomciosegal/fitness_pot)
 2. On the repository page click "Clone or Download"
@@ -191,7 +182,9 @@ ERRORS:
 7. Press enter and your local clone will be created.
  
 
-## 8.3 DEPLOYING TO HEROKU 
+## 8.2 DEPLOYING TO HEROKU 
+
+# This project was deplyed to HEROKU where the [Fitness Pot](https://fitness-pot.herokuapp.com/) live site is hosted.
 
 1. Type 'heroku ps:scale web=1' into bash terminal
 2. Create 'requirements.txt' (sudo pip3 freeze --local > requirements.txt)
@@ -217,6 +210,7 @@ ERRORS:
 22. Enter "MONGO_URI" in key box, enter 
    mongodb+srv://tomciosegal:cucharec7164@myfirstcluster-nbawd.mongodb.net/fitness_pot?retryWrites=true&w=majority
 22. Enter "SECRET" into the key box, enter the secret key into the value box.
+23. 
 
 # **9. CREDITS**
 

@@ -19,9 +19,12 @@ from validators import validate_recipe
 
 load_dotenv()
 
+if os.path.exists("env.py"):
+    import env
+
 app = Flask(__name__)
 # Get secret key
-app.config["SECRET_KEY"] = "qwert"
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 login = LoginManager(app)
 
 # Mongo Database for FITNESS POT
@@ -42,7 +45,6 @@ DEBUG_LEVEL = "DEBUG"
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    print(mydb.dish.find_one({"category": "Choose Category"}))
     # this will allow to display 6 recipes per page. function located in
     # utilities.py file
     pagination = 6
