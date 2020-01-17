@@ -49,11 +49,16 @@
         {% block body %}{% endblock %}
           
 	
-        </ul>
+        
         {% else %}
+        <li>
                     <button class="register-button" onclick="document.getElementById('id02').style.display='block'; document.getElementById('id01').style.display='none'" style="width:auto;" id="login_btn">Login</button>
                     <button class="register-button" onclick="document.getElementById('id01').style.display='block'; document.getElementById('id02').style.display='none'" style="width:auto;" id="signup_btn">Sign Up</button>
+               </li>
+               
                 {% endif %}
+
+                </ul>
       </div>
     </div>
   </nav>
@@ -159,7 +164,7 @@
 
       </form>
 </div>
-</div>
+
 <footer class="footer">
     <div class="container">
       <div class="row align-items-center">

@@ -1,5 +1,8 @@
 {% extends 'base.html'%} {% block content %}
-<main role="main">
+<main>
+    <div id="scrool-button">
+        <button class="scrool-down d-md-none">View Recipe<i class="fas fa-chevron-down"></i></button>
+        </div>
 
     <div class="row dropdown">
         <div class= "col-md-6">
@@ -17,10 +20,12 @@
                         <a class = "" href = "{{url_for('index', category = category)}}">{{category.capitalize()}}</a>
                     </li>
                 {% endfor %}
-                </div>
+                
             </ul>
-    
+        </div>
     </div>
+
+
 
 	<h1 style="
     margin-top: 60px;
@@ -32,7 +37,7 @@
 "
     > {{selected_category}}</h1>
 
-	<div class="album py-5 bg-light">
+	<div class="album py-5 bg-light" id="scroll_stop">
 		<div class="container">
 
 			<div class="row">
@@ -93,6 +98,18 @@
     </div>
     </div>
 </main>
+
+<script>
+    let scrollBtn = document.querySelector('#scrool-button');
+    scrollBtn.addEventListener('click', function(){
+        let scroll_stop = document.querySelector('#scroll_stop');
+
+        window.scrollTo({
+            'behavior': 'smooth',
+            'top': scroll_stop.offsetTop
+        })
+    })
+</script>
 {% endblock %}
 
 
