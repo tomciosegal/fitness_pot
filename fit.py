@@ -167,6 +167,10 @@ def myrecipies():
         "myrecipies.html", page=page, recipes=recipes, next=next,
     )
 
+# =============
+# DELETE RECIPE
+# =============
+
 
 @app.route("/recipe/delete/<recipe_id>", methods=["GET", "POST"])
 def delete_recipe(recipe_id):
@@ -177,6 +181,10 @@ def delete_recipe(recipe_id):
         flash("Deleting not succesfull")
 
     return redirect(url_for("index"))
+
+# =========================
+# UPDATE AN EXISTING RECIPE when 'Update Recipe' button is clicked
+# =========================
 
 
 @app.route("/recipe/edit/<recipe_id>", methods=["GET", "POST"])
@@ -230,7 +238,10 @@ def edit_recipe(recipe_id):
             should_show_background_image=False,
         )
 
-
+# ===================================
+# SHOW THE DETAILS OF A SINGLE RECIPE - Showing introductory 
+# text, how many serves,time,category
+# ===================================
 @app.route("/recipe/view/<recipe_id>")
 def view_recipe(recipe_id):
     recipe = mydb.dish.find_one({"_id": ObjectId(recipe_id)})
@@ -240,7 +251,9 @@ def view_recipe(recipe_id):
         should_show_background_image=False,
     )
 
-
+# =====================
+# Insert the new recipe when 'Send Recipe' button is clicked. 
+# =====================
 @app.route("/recipe/new", methods=["GET", "POST"])
 def create_recipe():
     if request.method == "POST":
@@ -295,5 +308,5 @@ if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),
         port=int(os.environ.get("PORT", "8080")),
-        debug=True,
+        debug=False,
     )
