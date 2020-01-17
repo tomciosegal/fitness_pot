@@ -167,6 +167,7 @@ def myrecipies():
         "myrecipies.html", page=page, recipes=recipes, next=next,
     )
 
+
 # =============
 # DELETE RECIPE
 # =============
@@ -181,6 +182,7 @@ def delete_recipe(recipe_id):
         flash("Deleting not succesfull")
 
     return redirect(url_for("index"))
+
 
 # =========================
 # UPDATE AN EXISTING RECIPE when 'Update Recipe' button is clicked
@@ -238,8 +240,9 @@ def edit_recipe(recipe_id):
             should_show_background_image=False,
         )
 
+
 # ===================================
-# SHOW THE DETAILS OF A SINGLE RECIPE - Showing introductory 
+# SHOW THE DETAILS OF A SINGLE RECIPE - Showing introductory
 # text, how many serves,time,category
 # ===================================
 @app.route("/recipe/view/<recipe_id>")
@@ -251,8 +254,9 @@ def view_recipe(recipe_id):
         should_show_background_image=False,
     )
 
+
 # =====================
-# Insert the new recipe when 'Send Recipe' button is clicked. 
+# Insert the new recipe when 'Send Recipe' button is clicked.
 # =====================
 @app.route("/recipe/new", methods=["GET", "POST"])
 def create_recipe():
