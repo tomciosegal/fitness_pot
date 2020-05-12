@@ -1,0 +1,118 @@
+{% extends 'base.html'%} {% block content %}
+<main>
+    <div id="scrool-button">
+        <button class="scrool-down d-md-none">View Recipe<i class="fas fa-chevron-down"></i></button>
+        </div>
+
+    <div class="row dropdown">
+        <div class= "col-md-6">
+        </div>
+        <div class= "col-md-6">
+        <p class="browse-category">Browse Food By Category</p>
+        <a id="my-dropdown" href="#" class="btn btn-primary dropdown-toggle select-category" data-toggle="dropdown">Select Category</a>
+            
+            <ul class="dropdown-menu">
+                <li>
+                    <a href= "{{url_for('index')}}">All Recipes</a>
+                </li>
+                {% for category in categories %}
+                    <li>
+                        <a class = "" href = "{{url_for('index', category = category)}}">{{category.capitalize()}}</a>
+                    </li>
+                {% endfor %}
+                
+            </ul>
+        </div>
+    </div>
+
+
+
+	<h1 style="
+    margin-top: 60px;
+    margin-left: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #1d2124;
+    
+"
+    > {{selected_category}}</h1>
+
+	<div class="album py-5 bg-light" id="scroll_stop">
+		<div class="container">
+
+			<div class="row">
+				{% for recipe in recipes %}
+				<div class="col-md-4">
+					<div class="card-index mb-4 shadow-sm">
+						<p class=" bd-placeholder-img card-img-top">
+						</p>
+						{% if recipe.image %}
+                            {% if "http" in recipe.image  %}
+                                <img src="{{recipe.image}}" class="img-fluid img-thumbnail recipe-img" alt= "recipe.image"/>
+                            {% else %}    
+						        <img src="/static/img/some_recipies/{{recipe.image}}" class="img-fluid img-thumbnail recipe-img" alt= recipe.image/>
+                            {% endif %}
+                        {% else %}
+						<img src="/static/img/some_recipies/dumbell.jpg" class="img-fluid img-thumbnail recipe-img" alt ="dumbell"/>
+                         {% endif %}
+						<div class="card-body">
+							<h4 class="card-text d-flex justify-content-center">{{recipe.title}}</h4>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="card-body-details">
+									
+									<p class="card-text"><i class="fab fa-bandcamp"></i> {{recipe.category}}</p>
+									<p class="card-text"><i class="fas fa-clock"></i> {{recipe.cooking_time}} min</p>
+									<p class="card-text"><i class="fas fa-user-friends"></i> {{recipe.serves}}</p>
+								</div>
+                            </div>
+                            <div class= "card-description">
+                                <p class= "short-description"> {{recipe.description}}</p>
+                            </div>
+						</div>
+						<div class="card-footer card-footer1 d-flex justify-content-center">
+                         
+							 <button type="button" class="btn btn-outline-dark details-button"
+								onclick="window.location.href='{{ url_for( 'view_recipe', recipe_id=recipe._id)}}';">
+                                View Recipe</button> 
+						</div>
+					</div>
+                    
+				</div>
+                
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+    <div class="row">
+        <div class = col-md-6>
+    {% if page > 1 %}
+    <a href="{{ url_for( 'index' , page=page-1 ) }}" class="previous">&laquo; Previous</a>
+    {% endif %}
+
+    {% if next %}
+    </div>
+    <div class = col-md-6>
+    <a href="{{ url_for( 'index' , page=page+1 ) }}" class="next">Next &raquo;</a>
+    {% endif %}
+    
+    </div>
+    </div>
+</main>
+
+<script>
+    let scrollBtn = document.querySelector('#scrool-button');
+    scrollBtn.addEventListener('click', function(){
+        let scroll_stop = document.querySelector('#scroll_stop');
+
+        window.scrollTo({
+            'behavior': 'smooth',
+            'top': scroll_stop.offsetTop
+        })
+    })
+</script>
+{% endblock %}
+
+
+
+
+
